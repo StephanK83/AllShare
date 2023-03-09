@@ -10,9 +10,24 @@ export default class extends Controller {
 
   connect() {
     console.log(`Connecting to the ActionCable channel with id ${this.chatroomIdValue}`)
-    createConsumer().subscriptions.create(
+    this.channel = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
-      { received: (data) => { this.messagesTarget.insertAdjacentHTML("beforeend", data) } }
+      { received: (data) => { this.insertMessage(data) } }
     )
+  }
+
+  disconnect() {
+    console.log("disconnected")
+    this.channel.unsubscribe()
+  }
+
+  resetForm(event) {
+    event.target.reset()
+  }
+
+  insertMessage(data) {
+    this.messagesTarget.insertAdjacentHTML("beforeend", data);
+    // scroll to the bottom of the message
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
   }
 }
