@@ -1,0 +1,25 @@
+<h2>You have <%= @bookings.count %> bookings: </h2>
+
+<ul>
+  <% @bookings.each do |booking| %>
+    <h5><%= booking.item.name %></h5>
+    <li>Category: <%= booking.item.category %></li>
+    <li>Description: <%= booking.item.description %></li>
+    <li>Start date: <%= booking.start_date.strftime("%d %b %Y") %></li>
+    <li>End date: <%= booking.end_date.strftime("%d %b %Y") %></li>
+    <li>Price per day: <%= booking.item.price.to_i %> euros</li>
+    <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
+    <li>Total price: <%= booking.total_price %> euros</li>
+    <button type="button" class="btn btn-warning">
+      <%= link_to "Edit",
+        edit_item_booking_path(booking.item, booking)
+      %>
+    </button>
+    <button type="button" class="btn btn-danger">
+      <%= link_to "Cancel",
+        item_booking_path(booking.item, booking),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel the booking?"}
+      %>
+    </button>
+  <% end %>
+</ul>
