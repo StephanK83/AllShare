@@ -10,15 +10,16 @@
     <li>Price per day: <%= booking.item.price.to_i %> euros</li>
     <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
     <li>Total price: <%= booking.total_price %> euros</li>
+    <li><%= booking.status %></li>
     <button type="button" class="btn btn-warning">
       <%= link_to "Edit",
-        edit_item_booking_path(booking.item, booking)
+        edit_booking_path(booking)
       %>
     </button>
     <button type="button" class="btn btn-danger">
       <%= link_to "Cancel",
-        item_booking_path(booking.item, booking),
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel the booking?"}
+        booking_cancel_path(booking),
+        data: {turbo_confirm: "Are you sure you want to cancel the booking?"}
       %>
     </button>
   <% end %>

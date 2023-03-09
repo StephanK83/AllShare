@@ -8,17 +8,25 @@
   <li>Price: <%= @item.price %> euros per day</li>
 </ul>
 
-<button type="button" class="btn btn-success">
-  <%= link_to "Book", new_item_booking_path(@item) %>
-</button>
+<div>
+  <% unless policy(@item).owner? %>
+    <button type="button" class="btn btn-success">
+      <%= link_to "Book", new_item_booking_path(@item) %>
+    </button>
+  <% end %>
 
-<button type="button" class="btn btn-warning">
-  <%= link_to "Edit", edit_item_path %>
-</button>
+  <% if policy(@item).edit? %>
+    <button type="button" class="btn btn-warning">
+      <%= link_to "Edit", edit_item_path %>
+    </button>
+  <% end %>
 
-<button type="button" class="btn btn-danger">
-  <%= link_to "Delete",
-    item_path,
-    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-  %>
-</button>
+  <% if policy(@item).destroy? %>
+    <button type="button" class="btn btn-danger">
+      <%= link_to "Delete",
+        item_path,
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </button>
+  <% end %>
+</div>

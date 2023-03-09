@@ -1,8 +1,8 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:new, :create, :edit, :update, :destroy]
+  # before_action :set_booking, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @bookings = Booking.all
+    @bookings = policy_scope(Booking).all
   end
 
   # the Booking Show page is not necessary
@@ -10,12 +10,17 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @item = Item.find(params[:item_id])
     @booking = @item.bookings.new
+    authorize @item
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @booking = @item.bookings.new(booking_params)
     @booking.user = current_user
+
+    authorize @item
 
     if @booking.save
       redirect_to item_bookings_path
@@ -26,10 +31,13 @@ class BookingsController < ApplicationController
 
   def edit
     @booking = @item.bookings.find(params[:id])
+    authorize @item
   end
 
   def update
     @booking = @item.bookings.find(params[:id])
+
+    authorize @booking
 
     if @booking.update(booking_params)
       redirect_to item_bookings_path
@@ -39,8 +47,18 @@ class BookingsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:item_id])
     @booking = @item.bookings.destroy(params[:id])
+
+    authorize @item
     redirect_to item_bookings_path, status: :see_other
+  end
+
+  def cancel
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.update status: 'cancelled'
+    redirect_to bookings_path
   end
 
   private
@@ -49,8 +67,8 @@ class BookingsController < ApplicationController
     params.require(:booking).permit(:start_date, :end_date)
   end
 
-  def set_booking
-    @item = Item.find(params[:item_id])
-  end
+  # def set_booking
+  #   @item = Item.find(params[:item_id])
+  # end
 
 end
