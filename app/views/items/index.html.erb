@@ -1,0 +1,7 @@
+<h2>Check out all our items</h2>
+
+<ul>
+  <% @items.each do |item| %>
+    <li><%= link_to item.name, item_path(item) %> - <%= item.category %></li>
+  <% end %>
+</ul>

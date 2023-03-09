@@ -3,6 +3,12 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :item
 
-  validates :start_date, :end_date, :total_price, presence: true
-  enum status: { pending: O, accepted: 1, declined: 2, canceled: 3 }
+  validates :start_date, :end_date, presence: true
+  enum status: { pending: 0, accepted: 1, declined: 2, cancelled: 3 }
+
+  def total_price
+    number_of_days = end_date - start_date
+    return (item.price * number_of_days).to_i
+  end
+
 end
