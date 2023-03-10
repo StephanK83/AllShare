@@ -10,6 +10,8 @@ class BookingsController < ApplicationController
 
   # the Booking Show page is not necessary
   def show
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def new

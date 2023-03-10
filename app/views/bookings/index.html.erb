@@ -29,5 +29,10 @@
         data: {turbo_confirm: "Are you sure you want to cancel the booking?"}
       %>
     </button>
+    <button type="button" class="btn btn-light">
+      <%= link_to "Review",
+        new_item_booking_review_path(booking.item_id, booking)
+      %>
+    </button>
   <% end %>
 </ul>
