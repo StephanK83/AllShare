@@ -4,6 +4,11 @@ class ItemsController < ApplicationController
     @items = policy_scope(Item).all
   end
 
+  def my_items
+    @my_items = Item.where(user: current_user)
+    authorize @my_items
+  end
+
   def new
     @item = Item.new
     authorize @item

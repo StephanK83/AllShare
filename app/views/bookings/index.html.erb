@@ -1,4 +1,11 @@
-<h2>You have <%= @bookings.count %> bookings: </h2>
+<button type="button" class="btn btn-info">
+  <%= link_to "Check all items", items_path %>
+</button>
+
+<% %w[pending accepted declined cancelled].each do |status| %>
+  <% count = instance_variable_get("@#{status}_bookings_count") %>
+  <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
+<% end %>
 
 <ul>
   <% @bookings.each do |booking| %>
@@ -10,7 +17,7 @@
     <li>Price per day: <%= booking.item.price.to_i %> euros</li>
     <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
     <li>Total price: <%= booking.total_price %> euros</li>
-    <li><%= booking.status %></li>
+    <li>Booking status: <%= booking.status %></li>
     <button type="button" class="btn btn-warning">
       <%= link_to "Edit",
         edit_booking_path(booking)
