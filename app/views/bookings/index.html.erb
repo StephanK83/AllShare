@@ -1,26 +1,38 @@
-<h2>You have <%= @bookings.count %> bookings: </h2>
-
-<ul>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
   <% @bookings.each do |booking| %>
-    <h5><%= booking.item.name %></h5>
-    <li>Category: <%= booking.item.category %></li>
-    <li>Description: <%= booking.item.description %></li>
-    <li>Start date: <%= booking.start_date.strftime("%d %b %Y") %></li>
-    <li>End date: <%= booking.end_date.strftime("%d %b %Y") %></li>
-    <li>Price per day: <%= booking.item.price.to_i %> euros</li>
-    <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
-    <li>Total price: <%= booking.total_price %> euros</li>
-    <li><%= booking.status %></li>
-    <button type="button" class="btn btn-warning">
-      <%= link_to "Edit",
-        edit_booking_path(booking)
-      %>
-    </button>
-    <button type="button" class="btn btn-danger">
-      <%= link_to "Cancel",
-        booking_cancel_path(booking),
-        data: {turbo_confirm: "Are you sure you want to cancel the booking?"}
-      %>
-    </button>
+    <div class="col">
+      <div class="card h-100">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <h5 class="card-title mb-0"><%= booking.item.name %></h5>
+          <div class="card-favorite">
+            <a href="#" class="btn btn-link text-danger"><i class="fas fa-heart"></i></a>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <ul class="list-unstyled">
+            <li>Category: <%= booking.item.category %></li>
+            <li>Description: <%= booking.item.description %></li>
+            <li>Price per day: <%= booking.item.price.to_i %> euros</li>
+            <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
+            <li>Total price: <%= booking.total_price %> euros</li>
+            <li><%= booking.status %></li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <div class="btn-group" role="group">
+            <button type="button" class="btn btn-warning">
+              <%= link_to "Edit", edit_booking_path(booking), class: "text-white" %>
+            </button>
+            <button type="button" class="btn btn-danger" data-turbo-confirm="Are you sure you want to cancel the booking?">
+              <%= link_to "Cancel", booking_cancel_path(booking), class: "text-white" %>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>

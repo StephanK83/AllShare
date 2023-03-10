@@ -10,3 +10,18 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+/*
+ *= require bootstrap-icons/font/bootstrap-icons.css
+ */
+
+ //= require bootstrap-icons
+
+ /*
+ *= require font-awesome
+*/
