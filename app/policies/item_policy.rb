@@ -10,6 +10,10 @@ class ItemPolicy < ApplicationPolicy
     return record.user == user
   end
 
+  def my_items?
+    true
+  end
+
   def show?
     true
   end

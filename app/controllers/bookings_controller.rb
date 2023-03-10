@@ -3,6 +3,9 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = policy_scope(Booking).all
+    %w[pending accepted declined cancelled].each do |status|
+      instance_variable_set("@#{status}_bookings_count", policy_scope(Booking).send(status).count)
+    end
   end
 
   # the Booking Show page is not necessary
@@ -23,24 +26,24 @@ class BookingsController < ApplicationController
     authorize @item
 
     if @booking.save
-      redirect_to item_bookings_path
+      redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @booking = @item.bookings.find(params[:id])
-    authorize @item
+    @booking = Booking.find(params[:id])
+    authorize @booking
   end
 
   def update
-    @booking = @item.bookings.find(params[:id])
+    @booking = Booking.find(params[:id])
 
     authorize @booking
 
     if @booking.update(booking_params)
-      redirect_to item_bookings_path
+      redirect_to bookings_path
     else
       render :edit, status: :unprocessable_entity
     end

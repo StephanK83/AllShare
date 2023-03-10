@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :items do
     resources :bookings, only: [:new, :create]
+    collection do
+      get :my_items, to: 'items#my_items'
+    end
   end
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   get "/bookings/:id/cancel", to: "bookings#cancel", as: "booking_cancel"
