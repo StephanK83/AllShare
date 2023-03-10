@@ -1,8 +1,8 @@
-class BookingPolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     # NOTE: Be explicit about which records you allow access to!
     def resolve
-      scope.where(user: user)
+      scope.all
     end
   end
 
@@ -16,21 +16,5 @@ class BookingPolicy < ApplicationPolicy
 
   def create?
     true
-  end
-
-  def edit?
-    return update?
-  end
-
-  def update?
-    true
-  end
-
-  def destroy?
-    true
-  end
-
-  def cancel?
-    record.user == user
   end
 end

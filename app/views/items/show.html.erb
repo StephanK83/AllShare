@@ -30,3 +30,10 @@
     </button>
   <% end %>
 </div>
+
+<h2>Reviews</h2>
+<% if @reviews.present? %>
+  <%= render @reviews %>
+<% else %>
+  <p>No reviews yet.</p>
+<% end %>

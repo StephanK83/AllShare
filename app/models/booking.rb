@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-  has_one :review
+  has_many :reviews
   belongs_to :user
   belongs_to :item
 
