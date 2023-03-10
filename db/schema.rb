@@ -18,9 +18,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_145437) do
     t.date "start_date"
     t.date "end_date"
     t.float "total_price"
-    t.string "status"
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_bookings_on_item_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "favourites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_favourites_on_item_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -34,11 +47,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_145437) do
     t.string "name"
     t.text "description"
     t.float "price"
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "quantity"
     t.integer "min_days_rent"
     t.string "postal_code"
+    t.index ["user_id"], name: "index_items_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.bigint "booking_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["booking_id"], name: "index_reviews_on_booking_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -72,4 +98,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_145437) do
 
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "bookings", "items"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "favourites", "items"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "items", "users"
+  add_foreign_key "reviews", "bookings"
+  add_foreign_key "reviews", "users"
 end

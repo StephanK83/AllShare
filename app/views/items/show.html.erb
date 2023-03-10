@@ -1,0 +1,32 @@
+<h5><%= @item.name %></h5>
+<ul>
+  <li>Category: <%= @item.category %></li>
+  <li>Description: <%= @item.description %></li>
+  <li>Postal code: <%= @item.postal_code %></li>
+  <li>Quantity: <%= @item.quantity %></li>
+  <li>Minimum rental days: <%= @item.min_days_rent %></li>
+  <li>Price: <%= @item.price %> euros per day</li>
+</ul>
+
+<div>
+  <% unless policy(@item).owner? %>
+    <button type="button" class="btn btn-success">
+      <%= link_to "Book", new_item_booking_path(@item) %>
+    </button>
+  <% end %>
+
+  <% if policy(@item).edit? %>
+    <button type="button" class="btn btn-warning">
+      <%= link_to "Edit", edit_item_path %>
+    </button>
+  <% end %>
+
+  <% if policy(@item).destroy? %>
+    <button type="button" class="btn btn-danger">
+      <%= link_to "Delete",
+        item_path,
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </button>
+  <% end %>
+</div>
