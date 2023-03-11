@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :bookings_as_owner, through: :items, source: :bookings
   has_many :messages
   #validates :first_name, :last_name, :street_name, :city, :postal_code, :country, :phone, presence: true
+
+  acts_as_favoritor
 end

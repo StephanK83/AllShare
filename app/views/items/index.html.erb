@@ -2,7 +2,13 @@
 
 <ul>
   <% @items.each do |item| %>
-    <li><%= link_to item.name, item_path(item) %> - <%= item.category %></li>
+    <li>
+      <%= link_to item.name, item_path(item) %> - <%= item.category %>
+      <%= link_to current_user.favorited?(item) ? "Unlike" : "Like",
+        toggle_favorite_item_path(item),
+        data: {turbo_method: :post},
+        remote: true %>
+    </li>
   <% end %>
 </ul>
 

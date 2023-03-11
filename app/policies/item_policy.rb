@@ -14,6 +14,10 @@ class ItemPolicy < ApplicationPolicy
     true
   end
 
+  def my_favorite_items?
+    record.user == user
+  end
+
   def show?
     true
   end
