@@ -1,0 +1,3 @@
+var itemId = '<%= @item.id%>';
+var likeButton = document.querySelector(`.like-icon[data-id='${itemId}'] i`);
+likeButton.classList.toggle('red');

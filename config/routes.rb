@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     end
     collection do
       get :my_items, to: 'items#my_items'
+      get :my_favorite_items, to: 'items#my_favorite_items'
+    end
+    member do
+      post :toggle_favorite, to: "items#toggle_favorite"
     end
   end
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]

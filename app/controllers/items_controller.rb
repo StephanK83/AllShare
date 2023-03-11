@@ -9,6 +9,11 @@ class ItemsController < ApplicationController
     authorize @my_items
   end
 
+  def my_favorite_items
+    @my_favorite_items = current_user.all_favorites
+    authorize @my_favorite_items.first.favoritable, policy_class: FavoritePolicy
+  end
+
   def new
     @item = Item.new
     authorize @item
@@ -50,6 +55,11 @@ class ItemsController < ApplicationController
     authorize @item
     @item.destroy
     redirect_to items_path, status: :see_other
+  end
+
+  def toggle_favorite
+    @item = Item.find(params[:id])
+    current_user.favorited?(@item) ? current_user.unfavorite(@item) : current_user.favorite(@item)
   end
 
   private
