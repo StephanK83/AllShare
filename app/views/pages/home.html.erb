@@ -1,6 +1,8 @@
 <h1>Pages#home</h1>
 <p>Find me in app/views/pages/home.html.erb</p>
 
+<%= render "shared/search_form" %>
+
 <button type="button" class="btn btn-info">
   <%= link_to "Check items", items_path %>
 </button>
