@@ -1,7 +1,11 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = policy_scope(Item).all
+    if params[:query].present?
+      @items = policy_scope(Item).search_by_name_and_category(params[:query])
+    else
+      @items = policy_scope(Item).all
+    end
   end
 
   def my_items
