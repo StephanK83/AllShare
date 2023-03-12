@@ -1,1 +1,83 @@
 // Specific CSS for your home-page
+body {
+  background-color: white;
+}
+
+.btn-secondary {
+  background-color: #CCCCCC;
+  border-radius: 50px;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-secondary :hover {
+  text-decoration: none;
+}
+
+.container-grid {
+  display: flex;
+  flex-wrap:  wrap;
+  grid-template-columns: 1fr 2fr; /* Set the column widths */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 40px; /* Add padding to the left */
+  padding-right: 40px; /* Add padding to the right */
+  margin-top: 50px
+}
+
+.container-left {
+  flex: 1 1 0;
+  margin-right: 20px;
+}
+
+.container-right {
+  flex: 1 1 0;
+  margin-left: 20px;
+}
+
+.container-three {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; /* Centers the container horizontally */
+  margin-top: 20px; /* Adds some space at the top */
+  flex-direction: column;
+}
+
+.container-four {
+  width: 100%;
+  height: 80px;
+  margin: 0 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* Centers the container horizontally */
+  font-size: 50px;
+  background-color: rgb(244, 244, 244);
+}
+h6 {
+  width: 513px;
+  height: 48px;
+  left: 54px;
+  top: 688px;
+  font-family: 'Inria Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  color: #000000;
+  opacity: 0.5;
+}
+
+.container-inner {
+  display: flex;
+  flex-direction: column; /* Flows the contents vertically */
+  align-items: center; /* Centers the contents horizontally */
+}
+
+.container-inner img {
+  width: 100%;
+}
