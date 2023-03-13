@@ -11,7 +11,7 @@
         data: {turbo_method: :post},
         remote: true %>
     </li>
-
+    <%= cl_image_tag item.photos.first.key, height: 300, width: 400, crop: :fill %>
   <% end %>
 </ul>
 
