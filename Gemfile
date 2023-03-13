@@ -51,6 +51,9 @@ gem "sassc-rails"
 # gem for the search bar
 gem "pg_search"
 
+# gem for Cloudinary
+gem "cloudinary"
+
 gem "jquery-rails"
 gem "acts_as_favoritor", github: 'jonhue/acts_as_favoritor'
 gem "devise"
