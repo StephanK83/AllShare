@@ -106,8 +106,44 @@ i.fa-solid {
   margin: 20px;
 }
 
+
 .search-form-container {
   display: flex;
   justify-content: center;
-  width: 450px; /* set the width as per your requirement */
+  width: 450px;
+}
+
+
+.col-md-6 .search-form-container, button {
+  margin-left: -58px;
+}
+.list-item-link:hover {
+  color: white;
+  animation: blink 1s infinite;
+}
+
+.list-item-link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.list-item-link:active {
+  color: white;
+  text-decoration: none;
+}
+
+.list-item-link {
+  color: white;
+  text-decoration: none;
+}
+@keyframes blink {
+  50% {
+  opacity: 0;
+  }
+}
+.row_ {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
