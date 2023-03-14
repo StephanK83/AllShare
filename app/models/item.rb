@@ -2,8 +2,9 @@ class Item < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :reviews, through: :bookings
   belongs_to :user
+  has_many_attached :photos
 
-  validates :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
+  validates :photos, :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
 
   acts_as_favoritable
 
