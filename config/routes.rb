@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
   resources :bookings, only: [:index, :show, :edit, :update, :destroy]
   get "/bookings/:id/cancel", to: "bookings#cancel", as: "booking_cancel"
+  get "/bookings/:id/accept", to: "bookings#accept", as: "booking_accept"
+  get "/bookings/:id/decline", to: "bookings#decline", as: "booking_decline"
   resources :reviews, only: [:index, :show, :edit, :update, :destroy]
   resources :favourites
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

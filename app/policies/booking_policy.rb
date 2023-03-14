@@ -30,6 +30,14 @@ class BookingPolicy < ApplicationPolicy
     true
   end
 
+  def accept?
+    record.user == user
+  end
+
+  def decline?
+    record.user == user
+  end
+
   def cancel?
     record.user == user
   end

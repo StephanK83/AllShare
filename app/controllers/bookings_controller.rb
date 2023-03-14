@@ -28,6 +28,7 @@ class BookingsController < ApplicationController
     authorize @item
 
     if @booking.save
+      ItemMailer.booking(@item.user, @booking).deliver_now
       redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity
@@ -57,6 +58,20 @@ class BookingsController < ApplicationController
 
     authorize @item
     redirect_to item_bookings_path, status: :see_other
+  end
+
+  def accept
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.update status: 'accepted'
+    redirect_to bookings_path
+  end
+
+  def decline
+    @booking = Booking.find(params[:id])
+    authorize @booking
+    @booking.update status: 'declined'
+    redirect_to bookings_path
   end
 
   def cancel
