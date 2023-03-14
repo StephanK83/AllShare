@@ -90,7 +90,7 @@ h6 {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 150px;
+  margin: 80px;
   width: 150px;
   text-align: center;
   background-color: rgb(244, 244, 244);
@@ -102,9 +102,12 @@ i.fa-solid {
   margin: 20px;
 }
 
+.categories {
+  margin: 20px;
+}
+
 .search-form-container {
   display: flex;
   justify-content: center;
   width: 450px; /* set the width as per your requirement */
-
 }
