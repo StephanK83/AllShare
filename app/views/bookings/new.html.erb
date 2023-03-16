@@ -1,5 +1,7 @@
-<%= simple_form_for([@item, @booking]) do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <%= simple_form_for ([@item, @booking]) , data: { controller: 'flatpickr' } do |f| %>
+    <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+    <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
+    <%= f.submit 'Book' %>
+  <% end %>
+</div>
