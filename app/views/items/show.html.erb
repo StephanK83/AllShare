@@ -13,7 +13,7 @@
   <li>Price: <%= @item.price %> euros per day</li>
 </ul>
 
-<div>
+<div class="container">
   <% unless policy(@item).owner? %>
     <button type="button" class="btn btn-success">
       <%= link_to "Book", new_item_booking_path(@item) %>
