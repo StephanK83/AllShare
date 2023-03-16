@@ -1,13 +1,18 @@
 body{
   margin-top:20px;
   backgroundColor:#eee;
+  padding: 50px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
 }
 .home-5-bg {
-  background: #1E90FF;
+  background: #032929;
   position: relative;
   background-size: cover;
   height: 50vh;
   background-position: center center;
+  padding-bottom: 30px;
+
 }
 
 .section {
@@ -20,7 +25,7 @@ position: relative;
 }
 
 .bg-overlay {
-  background-color: #000;
+  background-color: #000000f3;
   opacity: 0.7;
   position: absolute;
   top: 0;
@@ -58,4 +63,8 @@ position: relative;
 position: absolute;
   width: 100%;
   height: 100%;
+}
+
+.container {
+  padding-bottom: 20px; /* Add 20 pixels of padding to the bottom of the banner */
 }
