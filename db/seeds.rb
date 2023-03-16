@@ -29,6 +29,7 @@ require "faker"
 #  )
 #end
 
+# Item seeds
 
   Item.create(
     category: "Audio & Visual",
@@ -213,7 +214,7 @@ require "faker"
   Item.create(
     category: "Transport",
     name: "Vespas scooter",
-    description: "In any color you want",
+    description: "In any color you want and different engine sizes",
     price: Faker::Commerce.price,
     user_id: User.all.pluck(:id).sample,
     quantity: Faker::Number.between(from: 1, to: 10),
@@ -225,7 +226,7 @@ require "faker"
   Item.create(
     category: "Sport",
     name: "Klint ski",
-    description: "Used them two times, they're as good as new",
+    description: "Used them two times, they're as good as new, come with sticks",
     price: Faker::Commerce.price,
     user_id: User.all.pluck(:id).sample,
     quantity: Faker::Number.between(from: 1, to: 10),
@@ -236,7 +237,7 @@ require "faker"
 
   Item.create(
     category: "Sport",
-    name: "Climbing harnesses, quickdraws etc",
+    name: "Climbing harnesses, quickdraws and slings",
     description: "Can rent you all the material for your first climbing trip",
     price: Faker::Commerce.price,
     user_id: User.all.pluck(:id).sample,
@@ -317,3 +318,38 @@ require "faker"
     postal_code: Faker::Address.zip_code,
     picture: "https://images.unsplash.com/photo-1624923686627-514dd5e57bae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
   )
+
+
+  Item.create(
+    category: "Kids & Baby",
+    name: "Child's car seat",
+    description: "1x Joie Spin ISOFix Group 0-1 Car Seat in Ember. Suitable from birth to 18kg (4 years approx.)",
+    price: Faker::Commerce.price,
+    user_id: User.all.pluck(:id).sample,
+    quantity: Faker::Number.between(from: 1, to: 10),
+    min_days_rent: Faker::Number.between(from: 1, to: 7),
+    postal_code: Faker::Address.zip_code,
+    picture: "https://images.unsplash.com/photo-1619719287848-883c8f26efbc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+  )
+
+  Item.create(
+    category: "Kids & Baby",
+    name: "Child's bike",
+    description: "Balance bike for kids, helmet not included",
+    price: Faker::Commerce.price,
+    user_id: User.all.pluck(:id).sample,
+    quantity: Faker::Number.between(from: 1, to: 10),
+    min_days_rent: Faker::Number.between(from: 1, to: 7),
+    postal_code: Faker::Address.zip_code,
+    picture: "https://images.unsplash.com/photo-1517218578717-195e17f7c28f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGNoaWxkJTIwYmlrZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+  )
+
+  # Booking seeds
+
+ #Booking.create(
+ # start_date: Fri, 10 Mar 2023,
+ # end_date: Sat, 11 Mar 2023,
+ # total_price: @quantity,
+ # status: "closed",
+ # user_id: User.all.pluck(:id).sample,
+ # item_id: Item.all.pluck(:id).sample,
