@@ -11,23 +11,23 @@ require "yaml"
 require "httparty"
 require "faker"
 
-#User.destroy_all
-#Item.destroy_all
-#
-#response = HTTParty.get('https://jsonplaceholder.typicode.com/users')
-#users = JSON.parse(response.body)
-#
-#users.each do |user|
-#  User.create!(
-#    email: user['email'],
-#    first_name: user['name'].split(' ').first,
-#    last_name: user['name'].split(' ').last,
-#    street_name: user['address']['street'],
-#    postal_code: user['address']['zipcode'],
-#    city: user['address']['city'],
-#    password: "123456"
-#  )
-#end
+User.destroy_all
+Item.destroy_all
+
+response = HTTParty.get('https://jsonplaceholder.typicode.com/users')
+users = JSON.parse(response.body)
+
+users.each do |user|
+  User.create!(
+    email: user['email'],
+    first_name: user['name'].split(' ').first,
+    last_name: user['name'].split(' ').last,
+    street_name: user['address']['street'],
+    postal_code: user['address']['zipcode'],
+    city: user['address']['city'],
+    password: "123456"
+  )
+end
 
 # Item seeds
 
@@ -343,6 +343,19 @@ require "faker"
     postal_code: Faker::Address.zip_code,
     picture: "https://images.unsplash.com/photo-1517218578717-195e17f7c28f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzJ8fGNoaWxkJTIwYmlrZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
   )
+
+  Item.create(
+    category: "Sport",
+    name: "Mountain bike",
+    description: "Beautiful specialized bike for rent. Size 58, tyres 29",
+    price: Faker::Commerce.price,
+    user_id: User.all.pluck(:id).sample,
+    quantity: Faker::Number.between(from: 1, to: 10),
+    min_days_rent: Faker::Number.between(from: 1, to: 7),
+    postal_code: Faker::Address.zip_code,
+    picture: "https://images.unsplash.com/photo-1661767440839-ce9d64e2bacc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJpa2UlMjBzcGVjaWFsaXplZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+  )
+
 
   # Booking seeds
 
