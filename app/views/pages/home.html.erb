@@ -22,7 +22,7 @@
     <!-- Right container here -->
     <%= image_tag 'wallpapers/wallpaper1.jpg' %>
   </div>
- <div class="container-three">
+  <div class="container-three">
    <!-- Third container below with road -->
     <div class="container-inner">
       <h6>Congratulations on taking the first step towards freedom! Let our web app be your guide on this journey.</h6>
@@ -52,7 +52,6 @@
       <h1>Explore our categories</h1>
     </div>
     <div class="container-category-items>">
-    <h1>Placeholder</h1>
     <%= render "shared/category_cards" %>
     </div>
   </div>
@@ -60,9 +59,10 @@
 
 <!-- Reviews -->
 
-  <div>
-  <%= render "shared/category_banner" %>
+  <div class="container-shared-category-banner">
+    <%= render "shared/category_banner" %>
   </div>
-  <%= render "shared/testimonial" %>
-</div>
+  <div>
+    <%= render "shared/testimonial" %>
+  </div>
 </div>
