@@ -11,8 +11,9 @@ require "yaml"
 require "httparty"
 require "faker"
 
-User.destroy_all
+Message.destroy_all
 Item.destroy_all
+User.destroy_all
 
 response = HTTParty.get('https://jsonplaceholder.typicode.com/users')
 users = JSON.parse(response.body)
@@ -30,6 +31,7 @@ users.each do |user|
 end
 
 # Item seeds
+
 
   Item.create(
     category: "Audio & Visual",

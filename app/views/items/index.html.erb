@@ -13,8 +13,8 @@
             data: {turbo_method: :post},
             remote: true %>
         </li>
-        <%= cl_image_tag item.photos.first.key, height: 300, width: 400, crop: :fill %>
-      <% end %>
+        <%= image_tag item.picture, height: 300, width: 400, crop: :fill %>
+      <% end %>exit
     </ul>
   </div>
   <div class="list-an-item">

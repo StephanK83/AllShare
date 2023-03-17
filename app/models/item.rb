@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many_attached :photos
 
-  validates :photos, :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
+  validates :picture, :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
 
   acts_as_favoritable
 
