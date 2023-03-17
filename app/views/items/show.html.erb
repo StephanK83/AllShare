@@ -1,4 +1,9 @@
 <h5><%= @item.name %></h5>
+
+<% @item.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
 <ul>
   <li>Category: <%= @item.category %></li>
   <li>Description: <%= @item.description %></li>
@@ -8,7 +13,7 @@
   <li>Price: <%= @item.price %> euros per day</li>
 </ul>
 
-<div>
+<div class="container">
   <% unless policy(@item).owner? %>
     <button type="button" class="btn btn-success">
       <%= link_to "Book", new_item_booking_path(@item) %>
