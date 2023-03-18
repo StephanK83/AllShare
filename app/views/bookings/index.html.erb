@@ -1,40 +1,92 @@
-<button type="button" class="btn btn-info">
-  <%= link_to "Check all items", items_path %>
-</button>
+<div class="container-bookings">
+  <button type="button" class="btn btn-info">
+    <%= link_to "Check all items", items_path %>
+  </button>
 
-<% %w[pending accepted declined cancelled].each do |status| %>
-  <% count = instance_variable_get("@#{status}_bookings_count") %>
-  <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
-<% end %>
-
-<ul>
-  <% @bookings.each do |booking| %>
-    <h5><%= booking.item.name %></h5>
-    <li>Category: <%= booking.item.category %></li>
-    <li>Description: <%= booking.item.description %></li>
-    <li>Start date: <%= booking.start_date.strftime("%d %b %Y") %></li>
-    <li>End date: <%= booking.end_date.strftime("%d %b %Y") %></li>
-    <li>Price per day: <%= booking.item.price.to_i %> euros</li>
-    <li>Rental days: <%= (booking.end_date - booking.start_date).to_i %></li>
-    <li>Total price: <%= booking.total_price %> euros</li>
-    <li>Booking status: <%= booking.status %></li>
-    <button type="button" class="btn btn-warning">
-      <%= link_to "Edit",
-        edit_booking_path(booking)
-      %>
-    </button>
-    <% if booking.status != 'declined' %>
-      <button type="button" class="btn btn-danger">
-          <%= link_to "Cancel",
-            booking_cancel_path(booking),
-            data: {turbo_confirm: "Are you sure you want to cancel the booking?"}
-          %>
-      </button>
-    <% end %>
-    <button type="button" class="btn btn-light">
-      <%= link_to "Review",
-        new_item_booking_review_path(booking.item_id, booking)
-      %>
-    </button>
+  <% %w[pending accepted declined cancelled].each do |status| %>
+    <% count = instance_variable_get("@#{status}_bookings_count") %>
+    <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
   <% end %>
-</ul>
+
+  <div class="container-bookings-items">
+    <ul>
+      <% @bookings.each do |booking| %>
+        <li class="booking-item">
+          <div class="booking-details">
+            <h5><%= booking.item.name %></h5>
+            <p class="category"><%= booking.item.category %></p>
+            <p class="description"><%= booking.item.description %></p>
+            <p class="rental-dates">Rental Dates: <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+            <p class="rental-price">Rental Price: <%= booking.total_price %> euros</p>
+            <p class="booking-status">Booking Status: <%= booking.status %></p>
+          </div>
+          <div class="booking-actions">
+            <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-warning btn-sm" %>
+            <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
+            <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-light btn-sm" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<style>
+  .container-bookings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+
+  .container-bookings-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+  }
+
+  .booking-item {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .booking-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+  }
+
+  .booking-details {
+    flex: 1;
+  }
+
+  .booking-details h5 {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 1.25rem;
+  }
+
+  .booking-details p {
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .booking-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .booking-actions a {
+    margin: 5px 0;
+  }
+</style>
