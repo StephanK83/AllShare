@@ -5,10 +5,10 @@
   </div>
   <div class="row">
   <% @items.each do |item| %>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
       <div class="card">
         <%= link_to item_path(item) do %>
-          <%= image_tag item.picture, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+          <%= image_tag item.picture, class: "card-img-top", style: "height: 150px; object-fit: cover;" %>
         <% end %>
         <div class="card-body">
           <h5 class="card-title"><%= link_to item.name, item_path(item) %></h5>
@@ -39,34 +39,16 @@
   justify-content: space-between;
 }
 
-.item-card {
-  margin-bottom: 30px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.item-card a {
-  display: block;
-  position: relative;
-}
-
-.item-card img {
-  display: block;
-  width: 100%;
-}
-
-.item-card h2 {
-  font-size: 20px;
+.card-title {
+font-size: 18px;
   margin: 10px 0;
 }
 
-.item-card p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 10px;
+.card-text {
+font-size: 14px;
+  margin: 10px 0;
 }
+
 
 .like-button {
   position: absolute;
