@@ -36,6 +36,7 @@ class ItemsController < ApplicationController
     authorize @item
 
     if @item.save
+      ItemMailer.confirmation(@item.user).deliver_now
       redirect_to items_path
     else
       render :new, status: :unprocessable_entity
