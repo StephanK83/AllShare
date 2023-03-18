@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   after_create :send_welcome_email
 
   has_many :items, dependent: :destroy
@@ -12,7 +11,6 @@ class User < ApplicationRecord
   has_many :bookings_as_owner, through: :items, source: :bookings, dependent: :destroy
   has_many :messages, dependent: :destroy
   #validates :first_name, :last_name, :street_name, :city, :postal_code, :country, :phone, presence: true
-
   acts_as_favoritor
 
   private
