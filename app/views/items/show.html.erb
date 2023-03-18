@@ -1,7 +1,7 @@
 <h5><%= @item.name %></h5>
 
-<% @item.photos.each do |photo| %>
-  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% @item.pictures.each do |photo| %>
+  <%= image_tag item picture.key, height: 300, width: 400, crop: :fill %>
 <% end %>
 
 <ul>

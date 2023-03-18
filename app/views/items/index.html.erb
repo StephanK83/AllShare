@@ -4,24 +4,31 @@
     <%= render "shared/search_form", style: "max-width: 400px;" %>
   </div>
   <div class="row">
-  <% @items.each do |item| %>
-    <div class="col-sm-3">
-      <div class="card">
-        <%= link_to item_path(item) do %>
-          <%= image_tag item.picture, class: "card-img-top", style: "height: 150px; object-fit: cover;" %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to item.name, item_path(item) %></h5>
-          <p class="card-text"><%= item.category %></p>
-          <%= link_to current_user.favorited?(item) ? "Unlike" : "Like",
-            toggle_favorite_item_path(item),
-            class: "btn btn-primary",
-            data: {turbo_method: :post},
-            remote: true %>
+    <% @items.each do |item| %>
+      <div class="col-sm-3">
+        <div class="card">
+          <%= link_to item_path(item) do %>
+            <% if item.picture%> <%# this allow us to manage the picture that come from seeds %>
+              <%= image_tag item.picture, class: "item-card-img" %>
+            <% else %>
+              <% item.photos.each do |photo| %> <%# this allow us to manage the photos that the user upload %>
+                <%= cl_image_tag photo.key, class: "item-card-img" %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to item.name, item_path(item) %></h5>
+            <p class="card-text"><%= item.category %></p>
+            <%= link_to current_user.favorited?(item) ? "Unlike" : "Like",
+              toggle_favorite_item_path(item),
+              class: "btn btn-primary",
+              data: {turbo_method: :post},
+              remote: true %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
   <div class="list-an-item">
@@ -31,28 +38,3 @@
     </button>
   </div>
 </div>
-
-<style>
-.items-index {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.card-title {
-font-size: 18px;
-  margin: 10px 0;
-}
-
-.card-text {
-font-size: 14px;
-  margin: 10px 0;
-}
-
-
-.like-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-</style>
