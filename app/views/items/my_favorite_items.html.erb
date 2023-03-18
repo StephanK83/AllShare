@@ -9,6 +9,6 @@
         data: {turbo_method: :post},
         remote: true %>
     </li>
-    <%= cl_image_tag favorite.favoritable.photos.first.key, height: 300, width: 400, crop: :fill %>
+    <%= image_tag item favorite.favoritable.pictures.first.key, height: 300, width: 400, crop: :fill %>
   <% end %>
 </ul>
