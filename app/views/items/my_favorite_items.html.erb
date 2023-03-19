@@ -1,8 +1,14 @@
 <h2>My favorite items</h2>
-
-<ul>
-  <% @my_favorite_items.each do |favorite| %>
-    <% if favorite.favoritable %>
+<% if @my_favorite_items == [] %>
+  <p>Just tap the heart icon on the item you like and add it to your list of favourites</p>
+  <div>
+    <button>
+      <%= link_to "See all items", items_path %>
+    </button>
+  </div>
+<% else %>
+  <ul>
+    <% @my_favorite_items.each do |favorite| %>
       <li>
         <%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %> - <%= favorite.favoritable.category %>
         <%= link_to current_user.favorited?(favorite.favoritable) ? "Unlike" : "Like",
@@ -17,8 +23,6 @@
           <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
         <% end %>
       <% end %>
-    <% else %>
-      <p>Just tap the heart icon on the item you like and add it to your list of favourites</p>
     <% end %>
-  <% end %>
-</ul>
+  </ul>
+<% end %>

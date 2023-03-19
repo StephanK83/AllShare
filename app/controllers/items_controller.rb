@@ -15,10 +15,7 @@ class ItemsController < ApplicationController
 
   def my_favorite_items
     @my_favorite_items = current_user.all_favorites
-
-    @my_favorite_items.each do |favorite|
-      authorize favorite.favoritable, policy_class: FavoritePolicy
-    end
+    authorize @my_favorite_items
   end
 
   def new
