@@ -1,7 +1,11 @@
 <h5><%= @item.name %></h5>
 
-<% @item.pictures.each do |photo| %>
-  <%= image_tag item picture.key, height: 300, width: 400, crop: :fill %>
+<% if @item.picture %>
+  <%= image_tag @item.picture, height: 300, width: 400, crop: :fill %>
+<% else %>
+  <% @item.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
 <% end %>
 
 <ul>
@@ -13,19 +17,23 @@
   <li>Price: <%= @item.price %> euros per day</li>
 </ul>
 
-<div class="container">
+<div>
   <% unless policy(@item).owner? %>
     <button type="button" class="btn btn-success">
       <%= link_to "Book", new_item_booking_path(@item) %>
     </button>
   <% end %>
+</div>
 
+<div>
   <% if policy(@item).edit? %>
     <button type="button" class="btn btn-warning">
       <%= link_to "Edit", edit_item_path %>
     </button>
   <% end %>
+</div>
 
+<div>
   <% if policy(@item).destroy? %>
     <button type="button" class="btn btn-danger">
       <%= link_to "Delete",
@@ -35,6 +43,13 @@
     </button>
   <% end %>
 </div>
+
+<div>
+  <button>
+    <%= link_to "See all items", items_path %>
+  </button>
+</div>
+
 
 <h2>Reviews</h2>
 <% if @reviews.present? %>

@@ -2,13 +2,23 @@
 
 <ul>
   <% @my_favorite_items.each do |favorite| %>
-    <li>
-      <%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %> - <%= favorite.favoritable.category %>
-      <%= link_to current_user.favorited?(favorite.favoritable) ? "Unlike" : "Like",
-        toggle_favorite_item_path(favorite.favoritable),
-        data: {turbo_method: :post},
-        remote: true %>
-    </li>
-    <%= image_tag item favorite.favoritable.pictures.first.key, height: 300, width: 400, crop: :fill %>
+    <% if favorite.favoritable %>
+      <li>
+        <%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %> - <%= favorite.favoritable.category %>
+        <%= link_to current_user.favorited?(favorite.favoritable) ? "Unlike" : "Like",
+          toggle_favorite_item_path(favorite.favoritable),
+          data: {turbo_method: :post},
+          remote: true %>
+      </li>
+      <% if favorite.favoritable.picture %>
+        <%= image_tag favorite.favoritable.picture, height: 300, width: 400, crop: :fill %>
+      <% else %>
+        <% favorite.favoritable.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>Just tap the heart icon on the item you like and add it to your list of favourites</p>
+    <% end %>
   <% end %>
 </ul>
