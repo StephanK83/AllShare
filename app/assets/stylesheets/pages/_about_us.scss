@@ -1,0 +1,50 @@
+body{
+  margin-top:40px;
+}
+
+.cta {
+display: block;
+padding: 30px;
+border: 3px dotted #eee;
+border-radius: 12px;
+margin: 0 3%;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 10px rgba(0, 0, 0, 0.12);
+}
+
+.cta .name {
+opacity: 0.2;
+}
+
+
+.cta img {
+padding: 4px;
+line-height: 1.0;
+background-color: #fff;
+border: 1px dashed #ddd;
+border-radius: 4px;
+}
+
+a:hover{
+  text-decoration:none;
+}
+
+
+.about-section .counter {
+  padding: 22px 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+}
+.about-section .counter .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.about-section .counter .count {
+  font-weight: 700;
+  color: #20247b;
+  margin: 0 0 5px;
+}
+.about-section .counter p {
+  font-weight: 600;
+  margin: 0;
+}
