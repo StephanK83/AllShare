@@ -11,26 +11,31 @@
       <div class="col-sm-3">
         <div class="card">
           <%= link_to item_path(item) do %>
-            <% if item.picture%> <%# this allow us to manage the picture that come from seeds %>
+            <% if item.picture%>
               <%= image_tag item.picture, class: "item-card-img" %>
             <% else %>
-              <% item.photos.each do |photo| %> <%# this allow us to manage the photos that the user upload %>
+              <% item.photos.each do |photo| %>
                 <%= cl_image_tag photo.key, class: "item-card-img" %>
+              <% end %>
+            <% end %>
+            <%= link_to toggle_favorite_item_path(item),
+                        class: "favorite-item-link",
+                        data: {turbo_method: :post},
+                        remote: true do %>
+              <% if current_user.favorited?(item) %>
+                <i class="fas fa-heart"></i>
+              <% else %>
+                <i class="fas fa-heart-o" aria-hidden="false"></i>
               <% end %>
             <% end %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title"><%= link_to item.name, item_path(item) %></h5>
             <p class="card-text"><%= item.category %></p>
-            <%= link_to current_user.favorited?(item) ? "Unlike" : "Like",
-              toggle_favorite_item_path(item),
-              class: "btn btn-primary",
-              data: {turbo_method: :post},
-              remote: true %>
           </div>
         </div>
       </div>
-    <% end %>
+<% end %>
   </div>
 </div>
 
@@ -41,3 +46,17 @@
     </button>
   </div>
 </div>
+
+<style>
+  .card {
+    position: relative;
+  }
+
+  .favorite-item-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    color: red;
+  }
+  </style>
