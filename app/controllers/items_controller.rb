@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
   def my_favorite_items
     @my_favorite_items = current_user.all_favorites
-    authorize @my_favorite_items.first.favoritable, policy_class: FavoritePolicy
+    authorize @my_favorite_items
   end
 
   def new
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
     if @item.save
       ItemMailer.confirmation(@item.user).deliver_now
-      redirect_to items_path
+      redirect_to item_path(@item)
     else
       render :new, status: :unprocessable_entity
     end
