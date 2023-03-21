@@ -1,13 +1,21 @@
-<%= simple_form_for(@item) do |f| %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :category,
-    collection: ['Film & photography', 'Audio & visual', 'Projectors & screens', 'Drones', 'DJ equipment', 'Storage', 'Electronics', 'Transport', 'Party & Events', 'Sports', 'Home, office & garden', 'Clothing', 'Holiday & travel', 'Musical instruments', 'Kids & baby']
-  %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :postal_code %>
-  <%= f.input :quantity %>
-  <%= f.input :min_days_rent %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+<div class="new-item-container", style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 80%;">
+  <div class="form-container", style="display: flex; justify-content: center; align-items: center; width: 50%; max-width: 550px;">
+    <%= simple_form_for(@item) do |f| %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.input :category,
+        collection: ['Film & photography', 'Audio & visual', 'Projectors & screens', 'Drones', 'DJ equipment', 'Storage', 'Electronics', 'Transport', 'Party & Events', 'Sports', 'Home, office & garden', 'Clothing', 'Holiday & travel', 'Musical instruments', 'Kids & baby']
+      %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :postal_code %>
+      <%= f.input :quantity %>
+      <%= f.input :min_days_rent %>
+      <%= f.input :price %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <div class="preview">
+    <h1>Placeholder Preview</h1>
+  </div>
+</div>

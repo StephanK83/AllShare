@@ -1,0 +1,27 @@
+.star-rating .full-star {
+  color: #FFD700; /* golden color */
+  text-shadow: 1px 1px #555; /* add a shadow effect */
+  font-size: 24px; /* adjust the font size as needed */
+  line-height: 1; /* set the line-height to 1 to prevent any extra spacing */
+}
+
+/* Define the styles for the half star */
+.star-rating .half-star {
+  color: #FFD700; /* golden color */
+  text-shadow: 1px 1px #555; /* add a shadow effect */
+  font-size: 24px; /* adjust the font size as needed */
+  line-height: 1; /* set the line-height to 1 to prevent any extra spacing */
+  &:before {
+    content: '\00BD'; /* add a half star character using the :before pseudo-element */
+    position: relative; /* position the half star relative to the full star */
+    left: -0.5em; /* move the half star half a character to the left */
+  }
+}
+
+/* Define the styles for the empty star */
+.star-rating .empty-star {
+  color: #999; /* set a gray color for the empty stars */
+  text-shadow: none; /* remove the shadow effect for the empty stars */
+  font-size: 24px; /* adjust the font size as needed */
+  line-height: 1; /* set the line-height to 1 to prevent any extra spacing */
+}

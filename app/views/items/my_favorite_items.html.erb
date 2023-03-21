@@ -1,28 +1,52 @@
 <h2>My favorite items</h2>
-<% if @my_favorite_items == [] %>
-  <p>Just tap the heart icon on the item you like and add it to your list of favourites</p>
-  <div>
-    <button>
-      <%= link_to "See all items", items_path %>
-    </button>
-  </div>
-<% else %>
-  <ul>
-    <% @my_favorite_items.each do |favorite| %>
-      <li>
-        <%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %> - <%= favorite.favoritable.category %>
-        <%= link_to current_user.favorited?(favorite.favoritable) ? "Unlike" : "Like",
-          toggle_favorite_item_path(favorite.favoritable),
-          data: {turbo_method: :post},
-          remote: true %>
-      </li>
-      <% if favorite.favoritable.picture %>
-        <%= image_tag favorite.favoritable.picture, height: 300, width: 400, crop: :fill %>
-      <% else %>
-        <% favorite.favoritable.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<p>Tap the heart to unlike</p>
+<div>
+  <button>
+    <%= link_to "See all items", items_path %>
+  </button>
+</div>
+<div class="row">
+  <% @my_favorite_items.each do |favorite| %>
+    <div class="col-sm-3">
+      <div class="card">
+        <%= link_to item_path(favorite.favoritable) do %>
+          <% if favorite.favoritable.picture %>
+            <%= image_tag favorite.favoritable.picture, class: "item-card-img" %>
+          <% else %>
+            <% favorite.favoritable.photos.each do |photo| %>
+              <%= cl_image_tag photo.key, class: "item-card-img" %>
+            <% end %>
+          <% end %>
+          <%= link_to toggle_favorite_item_path(favorite.favoritable),
+                      class: "favorite-item-link",
+                      data: {turbo_method: :post},
+                      remote: true do %>
+            <% if current_user.favorited?(favorite.favoritable) %>
+              <i class="fas fa-heart"></i>
+            <% else %>
+              <i class="far fa-heart" aria-hidden="false"></i>
+            <% end %>
+          <% end %>
         <% end %>
-      <% end %>
-    <% end %>
-  </ul>
-<% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %></h5>
+          <p class="card-text"><%= favorite.favoritable.category %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .card {
+    position: relative;
+  }
+
+  .favorite-item-link {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    color: red;
+  }
+</style>
