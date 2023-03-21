@@ -4,7 +4,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many_attached :photos
 
-  validates :picture, :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
+  validates :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
 
   acts_as_favoritable
 
@@ -16,3 +16,9 @@ class Item < ApplicationRecord
       tsearch: { prefix: true }
     }
 end
+
+#
+#validates :picture, :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
+#when I add the picture validation I can't create a new Item from the List an item page
+#when I add the photos validation I can't seed
+# Explanation
