@@ -10,7 +10,7 @@
         <%= f.hidden_field :rating, class: "rating-value" %>
       </div>
     </div>
-    <div class="comment-container", style="width: 430px">
+    <div class="comment-container">
       <h3>Write your comment</h3>
       <%= f.text_area :comment %>
     </div>
@@ -19,10 +19,14 @@
     </div>
 </div>
   <% end %>
-
 <style>
 
-  .submit-container {
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+.submit-container {
     margin: 10px;
   }
   .form-container {
@@ -32,7 +36,11 @@
     flex-direction: column;
     margin: 20px;
     padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
   }
+  
   .star-rating {
     display: flex;
     align-items: center;
@@ -41,12 +49,21 @@
     margin: 20px;
     padding: 20px;
   }
+  
   .star-rating .star {
     color: #999;
   }
+  
   .star-rating .star.gold {
     color: #ffd700;
   }
+
+  .comment-container {
+    width: 100%;
+    max-width: 430px;
+    margin-top: 20px;
+  }
+
 </style>
 
 <script>

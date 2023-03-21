@@ -1,6 +1,10 @@
-<div class="review">
+<div class="review", style="display: flex; justify-content: center; flex-direction: column;">
   <div class="rating">
-    <%= star_rating(review.rating) %>
+    <div class="review-star-rating" data-rating="<%= review.rating %>", style="margin: 20px;">
+      <% (1..5).each do |rating| %>
+        <span class="review-star" data-value="<%= rating %>">&#9733;</span>
+      <% end %>
+    </div>
   </div>
   <div class="comment">
     <%= review.comment %>
@@ -9,3 +13,43 @@
     <%= review.user.first_name %>
   </div>
 </div>
+
+
+<style>
+
+  .review-star-rating {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.review-star-rating .review-star {
+  color: #999;
+}
+
+.review-star-rating .review-star.gold {
+  color: #ffd700;
+}
+
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const reviewStarsContainers = document.querySelectorAll('.review-star-rating');
+
+    reviewStarsContainers.forEach(container => {
+      const rating = container.getAttribute('data-rating');
+      const stars = container.querySelectorAll('.review-star');
+
+      stars.forEach((star, index) => {
+        if (index < rating) {
+          star.classList.add('gold');
+        } else {
+          star.classList.remove('gold');
+        }
+      });
+    });
+  });
+</script>
