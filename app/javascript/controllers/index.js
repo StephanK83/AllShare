@@ -13,4 +13,5 @@ application.register("flatpickr", FlatpickrController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import { category_banner } from "./category_banner"
+import MapController from "./map_controller"
+application.register("map", MapController)

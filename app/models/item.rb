@@ -6,6 +6,10 @@ class Item < ApplicationRecord
 
   validates :category, :name, :description, :postal_code, :quantity, :min_days_rent, :price, presence: true
 
+  geocoded_by :postal_code
+  after_validation :geocode, if:
+  :will_save_change_to_postal_code?
+
   acts_as_favoritable
 
   include PgSearch::Model
