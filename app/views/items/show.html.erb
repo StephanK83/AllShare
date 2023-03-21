@@ -1,55 +1,75 @@
-<h5><%= @item.name %></h5>
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <% if @item.picture %>
+          <%= image_tag @item.picture, class: "card-img-top", height: 300, width: 400, crop: :fill %>
+        <% else %>
+          <% @item.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, class: "card-img-top", height: 300, width: 400, crop: :fill %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h1><%= @item.name %></h1>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Category:</strong> <%= @item.category %></li>
+          <li class="list-group-item"><strong>Description:</strong> <%= @item.description %></li>
+          <li class="list-group-item"><strong>Postal code:</strong> <%= @item.postal_code %></li>
+          <li class="list-group-item"><strong>Quantity:</strong> <%= @item.quantity %></li>
+          <li class="list-group-item"><strong>Minimum rental days:</strong> <%= @item.min_days_rent %></li>
+          <li class="list-group-item"><strong>Price:</strong> <%= @item.price %> euros per day</li>
+        </ul>
 
-<% if @item.picture %>
-  <%= image_tag @item.picture, height: 300, width: 400, crop: :fill %>
-<% else %>
-  <% @item.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
-<% end %>
+        <div class="item-actions mt-3">
+          <% unless policy(@item).owner? %>
+            <button type="button" class="btn btn-success">
+              <%= link_to "Book", new_item_booking_path(@item) %>
+            </button>
+          <% end %>
 
-<ul>
-  <li>Category: <%= @item.category %></li>
-  <li>Description: <%= @item.description %></li>
-  <li>Postal code: <%= @item.postal_code %></li>
-  <li>Quantity: <%= @item.quantity %></li>
-  <li>Minimum rental days: <%= @item.min_days_rent %></li>
-  <li>Price: <%= @item.price %> euros per day</li>
-</ul>
+          <% if policy(@item).edit? %>
+            <button type="button" class="btn btn-warning">
+              <%= link_to "Edit", edit_item_path %>
+            </button>
+          <% end %>
 
-<div>
-  <% unless policy(@item).owner? %>
-    <button type="button" class="btn btn-success">
-      <%= link_to "Book", new_item_booking_path(@item) %>
-    </button>
+          <% if policy(@item).destroy? %>
+            <button type="button" class="btn btn-danger">
+              <%= link_to "Delete",
+                item_path,
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+              %>
+            </button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="reviews">
+  <h2>Reviews</h2>
+  <% if @reviews.present? %>
+    <%= render @reviews %>
+  <% else %>
+    <p>No reviews yet.</p>
   <% end %>
 </div>
 
-<div>
-  <% if policy(@item).edit? %>
-    <button type="button" class="btn btn-warning">
-      <%= link_to "Edit", edit_item_path %>
-    </button>
-  <% end %>
-</div>
+<hr>
 
-<div>
-  <% if policy(@item).destroy? %>
-    <button type="button" class="btn btn-danger">
-      <%= link_to "Delete",
-        item_path,
-        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-      %>
-    </button>
-  <% end %>
-</div>
-
-<div>
+<div class="see-all">
   <button>
     <%= link_to "See all items", items_path %>
   </button>
 </div>
-
 
 <h2>Reviews</h2>
 <% if @reviews.present? %>
