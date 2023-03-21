@@ -1,5 +1,7 @@
-<%= simple_form_for([@item, @booking, @review]) do |f| %>
-  <%= f.input :rating, collection: (1..5) %>
-  <%= f.input :comment, as: :text %>
-  <%= f.button :submit %>
-<% end %>
+<div class="form-container", style="display: flex; justify-content:center; max-width 450px;">
+  <%= simple_form_for([@item, @booking, @review]) do |f| %>
+    <%= f.input :rating, collection: (1..5) %>
+    <%= f.input :comment, as: :text %>
+    <%= f.button :submit %>
+  <% end %>
+</div>
