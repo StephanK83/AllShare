@@ -1,13 +1,87 @@
-<%= simple_form_for(@item) do |f| %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :category,
-    collection: ['Film & photography', 'Audio & visual', 'Projectors & screens', 'Drones', 'DJ equipment', 'Storage', 'Electronics', 'Transport', 'Party & Events', 'Sports', 'Home, office & garden', 'Clothing', 'Holiday & travel', 'Musical instruments', 'Kids & baby']
-  %>
-  <%= f.input :name %>
-  <%= f.input :description %>
-  <%= f.input :postal_code %>
-  <%= f.input :quantity %>
-  <%= f.input :min_days_rent %>
-  <%= f.input :price %>
-  <%= f.submit %>
-<% end %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="new-item-container" style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 80%;">
+  <div class="form-container" style="display: flex; justify-content: center; align-items: center; width: 50%; max-width: 550px;">
+    <%= simple_form_for(@item) do |f| %>
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.input :category,
+        collection: ['Film & photography', 'Audio & visual', 'Projectors & screens', 'Drones', 'DJ equipment', 'Storage', 'Electronics', 'Transport', 'Party & Events', 'Sports', 'Home, office & garden', 'Clothing', 'Holiday & travel', 'Musical instruments', 'Kids & baby']
+      %>
+      <%= f.input :name %>
+      <%= f.input :description %>
+      <%= f.input :postal_code %>
+      <%= f.input :quantity %>
+      <%= f.input :min_days_rent %>
+      <%= f.input :price %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <div id="preview-container" class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <img id="preview-image" class="card-img-top" height="300" width="400" src="#" alt="Image preview" style="display: none;">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <h1 id="preview-name"></h1>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Category:</strong> <span id="preview-category"></span></li>
+          <li class="list-group-item"><strong>Description:</strong> <span id="preview-description"></span></li>
+          <li class="list-group-item"><strong>Postal code:</strong> <span id="preview-postal-code"></span></li>
+          <li class="list-group-item"><strong>Quantity:</strong> <span id="preview-quantity"></span></li>
+          <li class="list-group-item"><strong>Minimum rental days:</strong> <span id="preview-min-days-rent"></span></li>
+          <li class="list-group-item"><strong>Price:</strong> <span id="preview-price"></span> euros per day</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('#preview-image').attr('src', e.target.result);
+        $('#preview-image').css('display', 'block');
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $("#item_photos").change(function () {
+    readURL(this);
+  });
+
+  $("#item_name").keyup(function () {
+    $("#preview-name").text($(this).val());
+  });
+
+  $("#item_category").change(function () {
+    $("#preview-category").text($(this).val());
+  });
+
+  $("#item_description").keyup(function () {
+    $("#preview-description").text($(this).val());
+  });
+
+  $("#item_postal_code").keyup(function () {
+    $("#preview-postal-code").text($(this).val());
+  });
+
+  $("#item_quantity").keyup(function () {
+    $("#preview-quantity").text($(this).val());
+  });
+
+  $("#item_min_days_rent").keyup(function () {
+    $("#preview-min-days-rent").text($(this).val());
+  });
+
+  $("#item_price").keyup(function () {
+    $("#preview-price").text($(this).val());
+  });
+</script>
