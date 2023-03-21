@@ -64,51 +64,41 @@
 </div>
 
 <hr>
-
 <div class="see-all">
   <button>
     <%= link_to "See all items", items_path %>
   </button>
 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 3904c6f862e82acb17aedda9db3b102c655c89d5
-<h2>Reviews</h2>
-<% if @reviews.present? %>
-  <%= render @reviews %>
-<% else %>
-  <p>No reviews yet.</p>
-<% end %>
 
 <style>
-.star-rating {
-  display: inline-flex;
-  align-items: center;
-}
-.star-rating label {
-  color: #999;
-  font-size: 24px;
-  line-height: 1;
-  margin-right: 5px;
-  cursor: pointer;
-}
-.star-rating .full-star {
-  color: #FFD700;
-  text-shadow: 1px 1px #555;
-}
-.star-rating .half-star:before {
-  content: "\00BD";
-  position: relative;
-  left: -0.5em;
-}
-.star-rating .empty-star:hover,
-.star-rating .full-star:hover,
-.star-rating .half-star:hover ~ label {
-  color: #FFD700;
-}
-.star-rating .full-star.selected,
-.star-rating .half-star.selected ~ .full-star {
-  color: #FFD700;
-}
+
+  .star-rating {
+    display: inline-flex;
+    align-items: center;
+  }
+  .star-rating label {
+    color: #999;
+    font-size: 24px;
+    line-height: 1;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .star-rating .full-star {
+    color: #FFD700;
+    text-shadow: 1px 1px #555;
+  }
+  .star-rating .half-star:before {
+    content: "\00BD";
+    position: relative;
+    left: -0.5em;
+  }
+  .star-rating .empty-star:hover,
+  .star-rating .full-star:hover,
+  .star-rating .half-star:hover ~ label {
+    color: #FFD700;
+  }
+  .star-rating .full-star.selected,
+  .star-rating .half-star.selected ~ .full-star {
+    color: #FFD700;
+  }
 </style>

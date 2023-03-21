@@ -4,32 +4,36 @@
   </button>
 
   <% %w[pending accepted declined cancelled].each do |status| %>
-    <% count = instance_variable_get("@#{status}_bookings_count") %>
-    <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
-  <% end %>
+    <% bookings_by_status = @bookings.select { |booking| booking.status == status } %>
+    <% if bookings_by_status.present? %>
+      <% count = bookings_by_status.size %>
+      <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
 
-  <div class="container-bookings-items">
-    <ul>
-      <% @bookings.each do |booking| %>
-        <li class="booking-item">
-          <div class="booking-details">
-            <h5><%= booking.item.name %></h5>
-            <p class="category"><%= booking.item.category %></p>
-            <p class="description"><%= booking.item.description %></p>
-            <p class="rental-dates">Rental Dates: <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
-            <p class="rental-price">Rental Price: <%= booking.total_price %> euros</p>
-            <p class="booking-status">Booking Status: <%= booking.status %></p>
-          </div>
-          <div class="booking-actions">
-            <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-warning btn-sm" %>
-            <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
-            <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-light btn-sm" %>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+      <div class="container-bookings-items">
+        <ul>
+          <% bookings_by_status.each do |booking| %>
+            <li class="booking-item">
+              <div class="booking-details">
+                <h5><%= booking.item.name %></h5>
+                <p class="category"><%= booking.item.category %></p>
+                <p class="description"><%= booking.item.description %></p>
+                <p class="rental-dates">Rental Dates: <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                <p class="rental-price">Rental Price: <%= booking.total_price %> euros</p>
+                <p class="booking-status">Booking Status: <%= booking.status %></p>
+              </div>
+              <div class="booking-actions">
+                <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-warning btn-sm" %>
+                <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
+                <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-light btn-sm" %>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
 </div>
+
 
 <style>
   .container-bookings {
