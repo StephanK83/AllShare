@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <% @items.each do |item| %>
-        <div class="col-sm-3">
+        <div class="col-sm-3" id="items">
           <div class="card">
             <%= link_to item_path(item) do %>
               <% if item.picture%>
@@ -39,7 +39,7 @@
             </div>
           </div>
         </div>
-  <% end %>
+      <% end %>
     </div>
   </div>
     <div class="list-an-item">

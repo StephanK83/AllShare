@@ -11,7 +11,8 @@ export default class extends Controller {
     mapboxgl.accessToken = this.apiKeyValue;
     this.map = new mapboxgl.Map({
       container: this.element,
-      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      style: 'mapbox://styles/mapbox/dark-v11', // style URL
+      zoom: 2
     });
     this.#addMarkersToMap()
     this.#fitMapToMarkers()
@@ -22,15 +23,16 @@ export default class extends Controller {
     this.markersValue.forEach((marker) => {
       bounds.extend([marker.lng, marker.lat])
     })
-    this.map.fitBounds(bounds, {padding: 50})
+    this.map.fitBounds(bounds, {padding: 100})
   }
 
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
-      new mapboxgl.Marker()
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
+      const mapMarker = new mapboxgl.Marker()
         .setLngLat([marker.lng, marker.lat])
+        .setPopup(popup)
         .addTo(this.map);
     })
-
   }
 }
