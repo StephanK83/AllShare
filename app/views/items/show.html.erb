@@ -1,20 +1,36 @@
 <div class="row">
   <div class="col-md-6">
     <div class="card">
-      <div class="card-body">
-        <% if @item.picture %>
-          <%= image_tag @item.picture, class: "card-img-top", height: 300, width: 400, crop: :fill %>
-        <% else %>
-          <% @item.photos.each do |photo| %>
-            <%= cl_image_tag photo.key, class: "card-img-top", height: 300, width: 400, crop: :fill %>
-          <% end %>
-        <% end %>
+      <div class="card-body" style="height: 400px; overflow: hidden;">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <% if @item.picture %>
+              <div class="carousel-item active">
+                <%= image_tag @item.picture, class: "d-block w-100", style: "object-fit: cover; height: 400px;", crop: :fill %>
+              </div>
+            <% else %>
+              <% @item.photos.each_with_index do |photo, index| %>
+                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                  <%= cl_image_tag photo.key, class: "d-block w-100", style: "object-fit: cover; height: 400px;", crop: :fill %>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
   <div class="col-md-6">
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" style="height: 400px;">
         <h1><%= @item.name %></h1>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Category:</strong> <%= @item.category %></li>
@@ -69,6 +85,8 @@
     <%= link_to "See all items", items_path %>
   </button>
 </div>
+
+
 
 <style>
 
