@@ -17,10 +17,9 @@ body {
 }
 
 .container-grid {
-  display: flex;
   flex-wrap:  wrap;
-  grid-template-columns: 1fr 2fr; /* Set the column widths */
-  display: flex;
+  //grid-template-columns: 1fr 2fr; /* Set the column widths */
+  //display: flex;
   justify-content: center;
   align-items: center;
   padding-left: 40px; /* Add padding to the left */
