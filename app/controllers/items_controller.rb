@@ -6,6 +6,14 @@ class ItemsController < ApplicationController
     else
       @items = policy_scope(Item).all
     end
+
+    @markers = @items.geocoded.map do |item|
+      {
+        lat: item.latitude,
+        lng: item.longitude,
+        info_window: render_to_string(partial: "popup", locals: {item: item})
+      }
+    end
   end
 
   def my_items
