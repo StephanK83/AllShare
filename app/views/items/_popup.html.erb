@@ -1,0 +1,43 @@
+<div class="popup">
+  <%= link_to item_path(item), style: 'text-decoration: none' do %>
+    <% if item.picture%>
+      <%= image_tag item.picture, class: "popup-img" %>
+    <% else %>
+      <% item.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, class: "popup-img" %>
+      <% end %>
+    <% end %>
+    <h1><%= item.name %></h1>
+    <h3>Postal code: <%= item.postal_code %></h3>
+  <% end %>
+</div>
+
+<style>
+  .popup {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 100px;
+    box-shadow: 2px 2px 2px #ccc;
+  }
+
+  .popup-img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .popup h1 {
+    font-size: 14px;
+    margin-bottom: 2px;
+    text-decoration: none;
+  }
+
+  .popup h3 {
+    font-size: 8px;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+</style>
