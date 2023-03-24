@@ -5,6 +5,7 @@
   border-radius: 12px;
   position: relative;
   margin-bottom: 60px;
+  box-shadow: 0 25px 20px -21px rgba(0,0,0,0.57);
 }
 .card .thumbnail {
   border: 0 none;
@@ -16,7 +17,7 @@
 }
 .card .thumbnail>img {
   border-radius: 12px 12px;
-  box-shadow: 0 25px 20px -21px rgba(0,0,0,0.57);
+
 }
 .card .thumb-cover {
   padding: 15px 20px;
@@ -116,13 +117,13 @@
 }
 .card .thumb-cover {
   padding: 15px 20px;
-  height: 96%;
+  height: 92%;
   top: 0;
   position: absolute;
   opacity: 0;
   display: block;
   width: 100%;
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0, 0, 0, 0.411);
   z-index: 3;
   content: "";
   left: 0;

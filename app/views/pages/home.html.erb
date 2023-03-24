@@ -1,6 +1,8 @@
 <head>
   <!-- linking the icon-stylesheet of font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 <body class="landing-page">
   <div class="container-grid">
@@ -48,21 +50,38 @@
     </div>
     <div class="categories">
       <div class="container-title-categories">
-        <h1>Explore our categories</h1>
-      </div>
-      <div class="container-category-items>">
+
+      <div id="parallax-world-of-ugg">
+
+<section>
+  <div class="title">
+    <h3>Let's do some</h3>
+    <h1>SHARING</h1>
+  </div>
+</section>
+
+<section>
+    <div class="parallax-one">
+      <h2>EXPLORE OUR CATEGORIES</h2>
+    </div>
+</section>
+
+</div>
+    <div class="container-category-items>">
       <%= render "shared/category_cards" %>
-      </div>
+    </div>
+
+<div id="parallax-world-of-ugg">
+<section>
+  <div class="parallax-two">
+    <h2>REVIEWS</h2>
+  </div>
+</section>
+<div>
+      <%= render "shared/testimonial" %>
+</div>
+</div>
     </div>
   </div>
-
-  <!-- Reviews -->
-
-    <div class="container-shared-category-banner">
-      <%= render "shared/category_banner" %>
-    </div>
-    <div>
-      <%= render "shared/testimonial" %>
-    </div>
   </div>
 </body>
