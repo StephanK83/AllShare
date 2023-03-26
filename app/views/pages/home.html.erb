@@ -1,8 +1,9 @@
-  <div class="container-grid">
-    <div class="container-left" style="text-align: center;">
-      <!-- Left container here -->
-      <h1>Rent or borrow everything you want</h1>
-      <h3>Sharing is caring. This is the place where we can invite people to join the community and make the app appealing to them.</h3>
+<div class="banner">
+  <div class="left" style="width: 50%;">
+  <!-- Left container here -->
+    <h1>Rent or borrow everything you want</h1>
+    <h3>Sharing is caring. This is the place where we can invite people to join the community and make the app appealing to them.</h3>
+
     <div class="row_">
       <div class="col-md-6 search-form-container">
         <%= render "shared/search_form" %>
@@ -11,52 +12,92 @@
           </button>
       </div>
     </div>
-    </div>
-    <div class="container-right">
-      <!-- Right container here -->
-      <%= image_tag 'wallpapers/wallpaper1.jpg' %>
-    </div>
-    <div class="container-three">
-    <!-- Third container below with road -->
-      <div class="container-inner">
-        <h6>Congratulations on taking the first step towards freedom! Let our web app be your guide on this journey.</h6>
-        <%= image_tag 'Vector 1.jpg' %>
-      </div>
-    </div>
-    <div class="container-four">
-    <!-- fourth container with advantages of the project -->
-      <div class="container-small">
-        <i class="fa-regular fa-star"></i>
-        <h3>Access more<h3>
-        <h4>Get things done, pursue your passions</h4>
-      </div>
-      <div class="container-small">
-        <i class="fa-solid fa-wallet"></i>
-        <h3>Save money</h3>
-        <h4>Buy less, rent want you need</h4>
-      </div>
-      <div class="container-small">
-        <i class="fa-brands fa-pagelines"></i>
-        <h3>The green choice</h3>
-        <h4>Reduce your carbon footprint, live a lighter life.</h4>
-      </div>
-    </div>
+  </div>
+
+  <div class="right" style="width: 50%;">
     <div class="categories">
-      <div class="container-title-categories">
-        <h1>Explore our categories</h1>
-      </div>
-      <div class="container-category-items>">
-      <%= render "shared/category_cards" %>
+      <div class="card1__categories">
+        <div>
+          <article class="card1">
+            <img
+              class="card1__background"
+              src="images/davisuko-5E5N49RWtbA-unsplash.jpeg"
+              alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+              width="1920"
+              height="2193"
+            />
+            <div class="card1__content | flow">
+              <div class="card1__content--container | flow">
+                <h2 class="card1__title">Colombia</h2>
+                <p class="card1__description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                  labore laudantium deserunt fugiat numquam.
+                </p>
+              </div>
+              <button class="card1__button">Read more</button>
+            </div>
+          </article>
+          <article class="card1">
+            <img
+              class="card1__background"
+              src="images/davisuko-5E5N49RWtbA-unsplash.jpeg"
+              alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+              width="1920"
+              height="2193"
+            />
+            <div class="card1__content | flow">
+              <div class="card1__content--container | flow">
+                <h2 class="card1__title">Colombia</h2>
+                <p class="card1__description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                  labore laudantium deserunt fugiat numquam.
+                </p>
+              </div>
+              <button class="card1__button">Read more</button>
+            </div>
+          </article>
+        </div>
+        <div>
+          <article class="card1">
+            <img
+              class="card1__background"
+              src="images/davisuko-5E5N49RWtbA-unsplash.jpeg"
+              alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+              width="1920"
+              height="2193"
+            />
+            <div class="card1__content | flow">
+              <div class="card1__content--container | flow">
+                <h2 class="card1__title">Colombia</h2>
+                <p class="card1__description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                  labore laudantium deserunt fugiat numquam.
+                </p>
+              </div>
+              <button class="card1__button">Read more</button>
+            </div>
+          </article>
+          <article class="card1">
+            <img
+              class="card1__background"
+              src="images/davisuko-5E5N49RWtbA-unsplash.jpeg"
+              alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
+              width="1920"
+              height="2193"
+            />
+            <div class="card1__content | flow">
+              <div class="card1__content--container | flow">
+                <h2 class="card1__title">Colombia</h2>
+                <p class="card1__description">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum in
+                  labore laudantium deserunt fugiat numquam.
+                </p>
+              </div>
+              <button class="card1__button">Read more</button>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Reviews -->
-
-    <div class="container-shared-category-banner">
-      <%= render "shared/category_banner" %>
-    </div>
-    <div>
-      <%= render "shared/testimonial" %>
-    </div>
-  
+</div>
