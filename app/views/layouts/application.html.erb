@@ -5,30 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= javascript_include_tag "overlay" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="/assets/stylesheets/components/_goldenstars.scss">
   </head>
 
   <body>
-    <% if current_page?(root_path) %>
-      <!-- Render navbar without search field for home page -->
-      <%= render "shared/home_navbar" %>
-    <% else %>
-      <!-- Render navbar with search field for all other pages -->
-      <%= render "shared/navbar" %>
+    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create')) %>
+      <% if current_page?(root_path) %>
+        <!-- Render navbar without search field for home page -->
+        <%= render "shared/home_navbar" %>
+      <% else %>
+        <!-- Render navbar with search field for all other pages -->
+        <%= render "shared/navbar" %>
+      <% end %>
     <% end %>
     <!--- <%= render "shared/navbar" %> -->
     <%= render "shared/flashes" %>
     <div class="container">
       <%= yield %>
     </div>
+    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create')) %>
+      <footer>
+        <%= render "shared/footer" %>
+      </footer>
+    <% end %>
   </body>
-  <footer>
-    <%= render "shared/footer" %>
-  </footer>
 </html>
