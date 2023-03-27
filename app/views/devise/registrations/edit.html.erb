@@ -1,12 +1,11 @@
 <link rel="stylesheet" href="/assets/stylesheets/signinup">
 <script src="/javascript/controllers/signinupform.js"></script>
-<div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: column;">
+<div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: column; align-items: center; width: 50%; background-color: lightgrey; padding: 50px;">
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }, data: { turbo: :false, method: :put }) do |f| %>
     <%= f.error_notification %>
-
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-    <div class="form-inputs">
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <h2 style="align-self: flex-start;">Edit <%= resource_name.to_s.humanize %></h2>
+      <div class="form-inputs">
       <div class="firstlastname" style="display: flex; flex-direction: row;">
         <div class="field required">
           <%= f.label :first_name %>
@@ -42,14 +41,14 @@
       </div>
     </div>
 
-    <div class="form-actions">
-      <%= f.button :submit, "Update", class: "button" %>
+    <div class="form-actions" style="display: flex; flex-direction: column; align-items: flex-end; width: 100%; margin-top: 20px;">
+      <%= f.button :submit, "Update", class: "button", style: "width: 30%; height: 50px; display: flex; align-items: center; justify-content: center;" %>
+      <button class="button" onclick="location.href='<%= registration_path(resource_name) %>'" data-confirm="Are you sure?" data-turbo-confirm="Are you sure?" style="width: 30%; height: 50px; margin-top: 20px; display: flex; align-items: center; justify-content: center;">
+        Delete
+      </button>
+      <button class="button" onclick="location.href='<%= url_for(:back) %>'" style="width: 30%; height: 50px; margin-top: 20px; display: flex; align-items: center; justify-content: center;">
+        Back
+      </button>
     </div>
-  <% end %>
-
-  <h3>Cancel my account</h3>
-
-  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "button" %></div>
-
-  <%= link_to "Back", :back %>
 </div>
+  <% end %>

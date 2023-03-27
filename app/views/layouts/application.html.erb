@@ -12,7 +12,7 @@
   </head>
 
   <body>
-    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create')) %>
+    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create' || action_name == 'edit')) %>
       <% if current_page?(root_path) %>
         <!-- Render navbar without search field for home page -->
         <%= render "shared/home_navbar" %>
@@ -26,7 +26,7 @@
     <div class="container">
       <%= yield %>
     </div>
-    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create')) %>
+    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create' || action_name == 'edit')) %>
       <footer>
         <%= render "shared/footer" %>
       </footer>
