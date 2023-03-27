@@ -1,15 +1,8 @@
-<div class="search-form">
-  <%= form_with url: items_path, method: :get, class: "d-flex" do |form| %>
-    <div class="search-input-container">
-      <div class="search-icon-container">
-        <i class="fas fa-search search-icon"></i>
-      </div>
-      <%= form.text_field :query,
-        value: params[:query],
-        class: "search-input",
-        placeholder: "Search items..."
-      %>
-    </div>
-    <%= form.submit "Search", class: "search-button" %>
-  <% end %>
-</div>
+<%= form_with url: items_path, method: :get, class: "d-flex my-3" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "'Search' to see all items"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
