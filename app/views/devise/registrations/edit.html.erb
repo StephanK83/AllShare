@@ -1,43 +1,54 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<link rel="stylesheet" href="/assets/stylesheets/signinup">
+<script src="/javascript/controllers/signinupform.js"></script>
+<div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: column; align-items: center; width: 50%; background-color: lightgrey; padding: 50px;">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }, data: { turbo: :false, method: :put }) do |f| %>
+    <%= f.error_notification %>
+    <div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <h2 style="align-self: flex-start;">Edit <%= resource_name.to_s.humanize %></h2>
+      <div class="form-inputs">
+      <div class="firstlastname" style="display: flex; flex-direction: row;">
+        <div class="field required">
+          <%= f.label :first_name %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "First name", class: 'text-input', required: true %>
+        </div>
+        <div class="field required">
+          <%= f.label :last_name %>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "Last name", class: 'text-input', required: true %>
+        </div>
+      </div>
+      <div class="field required">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-input', required: true %>
+      </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+      <% end %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="field required">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "new-password", class: 'text-input', placeholder: "New password (leave blank if not changing)" %>
+      </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+      <div class="field required">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'text-input', placeholder: "Confirm new password" %>
+      </div>
 
-    <%= f.input :first_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "First name" }%>
-    <%= f.input :last_name,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "Last name" }%>
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
+      <div class="field required">
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'text-input', placeholder: "Current password", required: true %>
+      </div>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+    <div class="form-actions" style="display: flex; flex-direction: column; align-items: flex-end; width: 100%; margin-top: 20px;">
+      <%= f.button :submit, "Update", class: "button", style: "width: 30%; height: 50px; display: flex; align-items: center; justify-content: center;" %>
+      <button class="button" onclick="location.href='<%= registration_path(resource_name) %>'" data-confirm="Are you sure?" data-turbo-confirm="Are you sure?" style="width: 30%; height: 50px; margin-top: 20px; display: flex; align-items: center; justify-content: center;">
+        Delete
+      </button>
+      <button class="button" onclick="location.href='<%= url_for(:back) %>'" style="width: 30%; height: 50px; margin-top: 20px; display: flex; align-items: center; justify-content: center;">
+        Back
+      </button>
+    </div>
+</div>
+  <% end %>

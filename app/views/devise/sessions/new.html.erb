@@ -1,74 +1,85 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: :false }) do |f| %>
-<div class="container">
-  <div class="form-inputs">
-            <div class="row">
-                <div class="col-md-11 mt-60 mx-md-auto">
-                    <div class="login-box bg-white pl-lg-5 pl-0">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-md-6">
-                                <div class="form-wrap bg-white">
-                                    <h4 class="btm-sep pb-3 mb-5">Login</h4>
-                                    <form class="form" method="post" action="#">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="form-group position-relative">
-                                                    <span class="zmdi zmdi-account"></span>
-                                                    <%= f.input :email,
-                                                                required: false,
-                                                                autofocus: true,
-                                                                input_html: { autocomplete: "email" } %>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-group position-relative">
-                                                    <span class="zmdi zmdi-email"></span>
-                                                    <%= f.input :password,
-                                                                required: false,
-                                                                input_html: { autocomplete: "current-password" } %>
-                                                    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 text-lg-right">
-                                                <a href="#" class="c-black"></a>
-                                            </div>
-                                            <div class="form-actions">
+<link rel="stylesheet" href="/assets/stylesheets/signinup">
+<script src="/javascript/controllers/signinupform.js"></script>
+<div id="login-form-wrapper" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background-color: lightgrey;">
+  <div class="login-form-container" style="display: flex; justify-content: center; flex-direction: column; padding: 50px;">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }, data: { turbo: :false }) do |f| %>
 
-                                            </div>
-                                            <% end %>
-                                            <div class="col-12 mt-30">
-                                                <button type="submit" id="submit" class="btn btn-lg btn-custom btn-dark btn-block">Sign In
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="content text-center">
-                                    <div class="border-bottom pb-5 mb-5">
-                                        <h3 class="c-black">First time here?</h3>
-                                        <a href="http://localhost:3000/users/sign_up" class="btn btn-custom">Sign up</a>
-                                    </div>
-                                    <h5 class="c-black mb-4 mt-n1">Or Sign In With</h5>
-                                    <div class="socials">
-                                        <a href="#" class="zmdi zmdi-facebook"></a>
-                                        <a href="#" class="zmdi zmdi-twitter"></a>
-                                        <a href="#" class="zmdi zmdi-google"></a>
-                                        <a href="#" class="zmdi zmdi-instagram"></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <div class="field required">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-input', required: true %>
         </div>
-<%= render "devise/shared/links" %>
 
-<style>
-  .container {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-</style>
+        <div class="field required">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "current-password", class: 'text-input', required: true %>
+        </div>
+
+        <div class="form-actions" style="display: flex; flex-direction: column; justify-content: center;">
+          <%= f.button :submit, "Log in", class: "button", style: "margin-bottom: 30px;" %>
+          <button class="button", style="margin-bottom: 30px;">
+            <%= link_to "Sign up", new_registration_path(resource_name) %>
+            <style>
+              a {
+                color: white;
+                text-decoration: none;
+            }
+            </style>
+          <button class="button", style="text-align: center;">
+            <%= link_to "Password", new_password_path(resource_name) %>
+          </button>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  class magicFocus
+
+    constructor: (@parent) ->
+
+      return unless @parent
+
+      @focus = document.createElement 'div'
+      @focus.classList.add 'magic-focus'
+      @parent.classList.add 'has-magic-focus'
+      @parent.appendChild @focus
+
+      for input in @parent.querySelectorAll('input, textarea, select')
+        input.addEventListener 'focus', ->
+          window.magicFocus.show()
+        input.addEventListener 'blur', ->
+          window.magicFocus.hide()
+
+    show: =>
+
+      return unless ['INPUT','SELECT','TEXTAREA'].includes? (el = document.activeElement).nodeName
+
+      clearTimeout(@reset)
+
+      el = document.querySelector("[for=#{el.id}]") if ['checkbox', 'radio'].includes? el.type
+
+      @focus.style.top = "#{el.offsetTop||0}px"
+      @focus.style.left = "#{el.offsetLeft||0}px"
+      @focus.style.width = "#{el.offsetWidth||0}px"
+      @focus.style.height = "#{el.offsetHeight||0}px"
+
+    hide: =>
+
+      @focus.style.width = 0 unless ['INPUT','SELECT','TEXTAREA', 'LABEL'].includes? (el = document.activeElement).nodeName
+
+      @reset = setTimeout ->
+        window.magicFocus.focus.removeAttribute('style')
+      , 200
+
+  # initialize
+
+  window.magicFocus = new magicFocus document.querySelector('.div')
+
+  $ ->
+    $('.select').customSelect()
+
+</script>
