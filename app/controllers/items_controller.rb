@@ -1,16 +1,11 @@
 class ItemsController < ApplicationController
-  include Kaminari::Helpers::UrlHelper
 
   def index
     if params[:query].present?
-      @items = policy_scope(Item).search_by_name_and_category(params[:query]).limit(10).offset(params[:page].to_i * 10)
-    elsif params[:category].present?
-      @items = policy_scope(Item).where(category: params[:category]).limit(10).offset(params[:page].to_i * 10)
+      @items = policy_scope(Item).search_by_name_and_category(params[:query])
     else
-      @items = policy_scope(Item).all.limit(10).offset(params[:page].to_i * 10)
+      @items = policy_scope(Item).all
     end
-
-    # @items = Item.limit(10).offset(params[:page].to_i * 10)
 
     @markers = @items.geocoded.map do |item|
       {

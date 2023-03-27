@@ -1,11 +1,11 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color: black; z-index: 1;">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
     <% end %>
 
-    <div class="search-bar" style="transform: translateX(200px); display: flex; align-items: center;">
-      <div class="col-12 col-sm-6 col-md-6 search-form-container">
+    <div class="search-bar">
+      <div class="col-md-6 search-form-container">
         <%= render "shared/search_form" %>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index: 999;">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
@@ -24,7 +24,7 @@
             <%= link_to "Messages", "/chatrooms/1", class: "nav-link", style: "color: white;" %>
           </li>
           </li>
-          <li class="nav-item dropdown" >
+          <li class="nav-item dropdown">
             <a class="nav-link" href="#" data-bs-toggle="dropdown"><%= current_user.first_name %></a>
             <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
