@@ -1,11 +1,68 @@
-  <!-- linking the icon-stylesheet of font awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-<body class="landing-page">
-  <div class="container-grid">
-    <div class="container-left" style="text-align: center;">
-      <!-- Left container here -->
-      <h1>Rent or borrow everything you want</h1>
-      <h3>Sharing is caring. This is the place where we can invite people to join the community and make the app appealing to them.</h3>
+<div class="container-fluid">
+  <div class="row banner" style="background-color: black;">
+    <div class="col-md-6 left text-white py-5">
+      <h1 class="display-4 fw-bold">Sharing Revolution<br>Building Connections<br>Stronger Community</h1>
+      <p class="lead">With AllShare, you can quickly and easily post the items you're willing to share, and browse listings from others in your area. You can communicate with potential borrowers and arrange to meet up to share your items. Our platform also includes a rating system, so you can build trust with your neighbors and know that you're borrowing from reliable people.</p>
+      <div class="d-flex justify-content-between search-form">
+        <%= render "shared/search_form" %>
+        <button type="button" class="shiny-btn">
+          <a href="<%= new_item_path %>" class="list-item-link" style="color: black; text-decoration: none;">List item</a>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-6 right py-5">
+      <div class="row">
+        <div class="col-sm-6 col-md-12 col-lg-6">
+          <%= render "shared/category_cards" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="banner">
+  <div class="left">
+    <h1>A Platform for Sharing<br>Building Community Connections</h1>
+    <p>With AllShare, you can quickly and easily post the items you're willing to share, and browse listings from others in your area. You can communicate with potential borrowers and arrange to meet up to share your items. Our platform also includes a rating system, so you can build trust with your neighbors and know that you're borrowing from reliable people.</p>
+    <div class="search-form">
+      <%= render "shared/search_form" %>
+      <button type="button" class="btn btn-primary" style="text-align: center; margin-left: 10px; margin-top: 16px; width: 120px; height: 38px;">
+        <%= link_to "List item", new_item_path, class: "list-item-link" %>
+      </button>
+    </div>
+  </div>
+  <div class="right">
+    <div class="card">
+      <h2>Card 1</h2>
+      <p>Card content</p>
+    </div>
+    <div class="card">
+      <h2>Card 2</h2>
+      <p>Card content</p>
+    </div>
+    <div class="card">
+      <h2>Card 3</h2>
+      <p>Card content</p>
+    </div>
+    <div class="card">
+      <h2>Card 4</h2>
+      <p>Card content</p>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+<!--
+<div class="banner">
+  <div class="left" style="width: 50%;">
+
+    <h1>Rent or borrow everything you want</h1>
+    <h3>Sharing is caring. This is the place where we can invite people to join the community and make the app appealing to them.</h3>
     <div class="row_">
       <div class="col-md-6 search-form-container">
         <%= render "shared/search_form" %>
@@ -80,10 +137,8 @@
           <article class="card1">
             <img
               class="card1__background"
-              src="images/davisuko-5E5N49RWtbA-unsplash.jpeg"
+              src="assets/images/wallpapers/audio.jpg"
               alt="Photo of Cartagena's cathedral at the background and some colonial style houses"
-              width="1920"
-              height="2193"
             />
             <div class="card1__content | flow">
               <div class="card1__content--container | flow">
@@ -140,19 +195,5 @@
       </div>
     </div>
   </div>
-<div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
-</body>
+</div>
 
-<script>
-
-  function showLogin() {
-  document.getElementById("overlay").style.display = "block";
-  document.getElementById("login-form-wrapper").style.display = "block";
-}
-
-function hideLogin() {
-  document.getElementById("overlay").style.display = "none";
-  document.getElementById("login-form-wrapper").style.display = "none";
-}
-
-</script>
