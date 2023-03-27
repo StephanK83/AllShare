@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/assets/stylesheets/signinup">
 <script src="/javascript/controllers/signinupform.js"></script>
-<div id="login-form-wrapper" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000;">
-  <div class="login-form-container" style="display: flex; justify-content: center; flex-direction: column;">
+<div id="login-form-wrapper" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background-color: lightgrey;">
+  <div class="login-form-container" style="display: flex; justify-content: center; flex-direction: column; padding: 50px;">
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form' }, data: { turbo: :false }) do |f| %>
 
       <%= f.error_notification %>
