@@ -1,0 +1,60 @@
+<div class="banner">
+  <!-- Left container here -->
+  <h1>Rent or borrow everything you want</h1>
+  <h3>Sharing is caring. This is the place where we can invite people to join the community and make the app appealing to them.</h3>
+
+  <div class="row_">
+    <div class="col-md-6 search-form-container">
+      <%= render "shared/search_form" %>
+        <button type="button" class="btn btn-primary" style="text-align: center; margin-left: 10px; margin-top: 16px; width: 120px; height: 38px;">
+          <%= link_to "List item", new_item_path, class: "list-item-link" %>
+        </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="container-grid">
+  <div class="container-three">
+  <!-- Third container below with road -->
+    <div class="container-inner">
+      <h6>Congratulations on taking the first step towards freedom! Let our web app be your guide on this journey.</h6>
+      <%= image_tag 'Vector 1.jpg' %>
+    </div>
+  </div>
+  <div class="container-four">
+  <!-- fourth container with advantages of the project -->
+    <div class="container-small">
+      <i class="fa-regular fa-star"></i>
+      <h3>Access more<h3>
+      <h4>Get things done, pursue your passions</h4>
+    </div>
+    <div class="container-small">
+      <i class="fa-solid fa-wallet"></i>
+      <h3>Save money</h3>
+      <h4>Buy less, rent want you need</h4>
+    </div>
+    <div class="container-small">
+      <i class="fa-brands fa-pagelines"></i>
+      <h3>The green choice</h3>
+      <h4>Reduce your carbon footprint, live a lighter life.</h4>
+    </div>
+  </div>
+  <div class="categories">
+    <div class="container-title-categories">
+      <h1>Explore our categories</h1>
+    </div>
+    <div class="container-category-items>">
+    <%= render "shared/category_cards" %>
+    </div>
+  </div>
+</div>
+
+  <!-- Reviews -->
+
+    <div class="container-shared-category-banner">
+      <%= render "shared/category_banner" %>
+    </div>
+    <div>
+      <%= render "shared/testimonial" %>
+    </div>

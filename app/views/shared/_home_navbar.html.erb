@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/scss" href="assets/stylesheets/components/_navbar.scss"> <!-- needs to be manually connected to the navbar.scss because of the new file name -->
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon banner-navbar">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
@@ -16,10 +16,12 @@
             <%= link_to "How it works", how_it_works_path, class: "nav-link", style: "color: white;" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link", style: "color: white;" %>
+            <%= link_to "Messages", "/chatrooms/1", class: "nav-link", style: "color: white;" %>
+          </li>
+          <li class="nav-item">
+            <p class="dropdown-item nav-link" style="color: white;"><%= current_user.first_name %></p>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#" data-bs-toggle="dropdown"><%= current_user.first_name %></a>
             <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", bookings_path, class: "dropdown-item", style: "color: black;" %>

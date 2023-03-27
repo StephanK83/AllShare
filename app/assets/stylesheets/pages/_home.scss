@@ -1,5 +1,51 @@
+.banner {
+  background-image: url(wallpapers/wallpaper3);
+  // background-color: red;
+  background-position: center;
+  background-size: cover;
+  box-sizing: border-box;
+  position: relative;
+  // flex: 1 1 0;
+  /* margin-right: 20px; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  justify-content: center;
+  padding: 50px;
+}
+
+.banner .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner h3 {
+  width: 50%;
+}
+
+.banner .right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.banner-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
 .btn-secondary {
-  background-color: #CCCCCC;
+  background-color: basic;
   border-radius: 50px;
   font-family: Arial, sans-serif;
   text-decoration: none;
@@ -12,21 +58,14 @@
 }
 
 .container-grid {
-  display: flex;
   flex-wrap:  wrap;
-  grid-template-columns: 1fr 2fr; /* Set the column widths */
-  display: flex;
+  //grid-template-columns: 1fr 2fr; /* Set the column widths */
+  //display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 40px; /* Add padding to the left */
-  padding-right: 40px; /* Add padding to the right */
-  margin-top: 50px
-}
-
-.container-left {
-  flex: 1 1 0;
-  /* margin-right: 20px; */
-  width: 50%;
+  // padding-left: 40px; /* Add padding to the left */
+  // padding-right: 40px; /* Add padding to the right */
+  // margin-top: 50px
 }
 
 .container-right {
@@ -97,14 +136,9 @@ i.fa-solid {
   margin: 20px;
 }
 
-.categories {
-  margin: 20px;
-}
-
-
 .search-form-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 450px;
 }
 
@@ -115,7 +149,7 @@ i.fa-solid {
 
 .list-item-link:hover {
   color: white;
-  animation: blink 1s infinite;
+  animation: blink 1s;
 }
 
 .list-item-link:visited {
@@ -140,7 +174,7 @@ i.fa-solid {
 .row_ {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -148,3 +182,217 @@ i.fa-solid {
   margin-bottom: 20px;
   height: auto;
 }
+
+// categories css from here -->
+.categories {
+  position: relative;
+}
+
+.categories .title {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+}
+
+.categories .card1__categories {
+  // background-color: #e6e6e6;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+  // padding: 100px 300px;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.card1 {
+  display: grid;
+  place-items: center;
+  width: 80vw;
+  max-width: 21.875rem;
+  height: 28.125rem;
+  overflow: hidden;
+  border-radius: 0.625rem;
+  box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+}
+
+.card1 h2 {
+  font-size: 2.25rem;
+  font-family: var(--font-title);
+  color: #e6e6e6;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.card1 p {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #e6e6e6;
+}
+
+.flow > * + * {
+  margin-top: var(--flow-space, 1em);
+}
+
+.card1 > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.card1__background {
+  object-fit: cover;
+  max-width: 100%;
+  height: 100%;
+}
+
+.card1__content {
+  --flow-space: 0.9375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-end;
+  height: 55%;
+  padding: 12% 1.25rem 1.875rem;
+  background: linear-gradient(
+    180deg,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.3) 10%,
+    hsl(0, 0%, 0%) 100%
+  );
+}
+
+.card1__content--container {
+  --flow-space: 1.25rem;
+}
+
+.card1__title {
+  position: relative;
+  width: fit-content;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  margin-top: 0;
+}
+
+.card1__title::after {
+  content: "";
+  position: absolute;
+  height: 0.3125rem;
+  width: calc(100% + 1.25rem);
+  bottom: calc((1.25rem - 0.5rem) * -1);
+  left: -1.25rem;
+  background-color: #e6e6e6;
+}
+
+.card1__button {
+  padding: 0.2em 1.6em;
+  width: fit-content;
+  width: -moz-fit-content; /* Prefijo necesario para Firefox  */
+  font-variant: small-caps;
+  font-weight: bold;
+  border-radius: 0.45em;
+  border: none;
+  background-color: #e6e6e6;
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  color: #111111;
+  margin-bottom: 5px;
+}
+
+.card1__button:focus {
+  outline: 2px solid black;
+  outline-offset: -5px;
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  .card1__content {
+    transform: translateY(62%);
+    transition: transform 500ms ease-out;
+    transition-delay: 500ms;
+  }
+
+  .card1__title::after {
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 1000ms ease-in, transform 500ms ease-out;
+    transition-delay: 500ms;
+    transform-origin: right;
+  }
+
+  .card1__background {
+    transition: transform 500ms ease-in;
+  }
+
+  .card1__content--container > :not(.card1__title),
+  .card1__button {
+    opacity: 0;
+    transition: transform 500ms ease-out, opacity 500ms ease-out;
+  }
+
+  .card1:hover,
+  .card1:focus-within {
+    transform: scale(1.05);
+    transition: transform 500ms ease-in;
+  }
+
+  .card1:hover .card1__content,
+  .card1:focus-within .card1__content {
+    transform: translateY(0);
+    transition: transform 500ms ease-in;
+  }
+
+  .card1:focus-within .card1__content {
+    transition-duration: 0ms;
+  }
+
+  .card1:hover .card1__background,
+  .card1:focus-within .card1__background {
+    transform: scale(1.3);
+  }
+
+  .card1:hover .card1__content--container > :not(.card1__title),
+  .card1:hover .card1__button,
+  .card1:focus-within .card1__content--container > :not(.card1__title),
+  .card1:focus-within .card1__button {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+    transition-delay: 1000ms;
+  }
+
+  .card1:hover .card1__title::after,
+  .card1:focus-within .card1__title::after {
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: opacity 500ms ease-in, transform 500ms ease-in;
+    transition-delay: 500ms;
+  }
+}
+
+.small__description {
+  height: 800px;
+  display: flex;
+  justify-content: space-between;
+  text-align: justifjn                 y;
+  padding-top: 120px;
+}
+
+.small__description p {
+  width: 800px;
+  font-size: 32px;
+}
+
+.small__description button {
+  font-size: 24px;
+  padding: 10px 20px;
+}
+// categories css to here <--

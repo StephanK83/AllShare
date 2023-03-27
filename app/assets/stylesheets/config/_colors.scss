@@ -1,10 +1,20 @@
 // Define variables for your color scheme
 
 // For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+.basic-palette {
+$normal-pink: #FF7070;
+$white: #ffffff;
+$black: #111111;
+$light-pink: #ffa3a3;
+$heavy-pink: #ff3d3d;
+$grey-light: #e6e6e6;
+}
+
+:root {
+  --black: #111111;
+  --white: #ffffff;
+  --light-grey: #e6e6e6;
+  --light-pink: #ffa3a3;
+  --medium-pink: #ff7070;
+  --dark-pink: #ff3d3d;
+  }
