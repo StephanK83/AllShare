@@ -1,5 +1,5 @@
 .navbar-lewagon {
-  justify-content: space-between;
+  // justify-content: space-between;
   // background: #374250;
   // top: 10;
   // left: 0;
@@ -14,4 +14,22 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  // background-color: rgba(0, 0, 0, 1); /* Set the background color to transparent */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  // z-index: 1; /* Set the z-index to a higher value than the container */
+}
+
+.home-links {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,9 +1,10 @@
 // Import Google fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Nunito&display=swap');
 
 // Define fonts for body and headers
-$body-font: 'MuseoSans', 'Helvetica', monospace;
-$headers-font: 'MuseoSans', 'Helvetica', monospace;
+$body-font: 'Roboto', 'Helvetica', monospace;
+$headers-font: 'Roboto', 'Helvetica', monospace;
+$special-font: 'Nunito', monospace;
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
