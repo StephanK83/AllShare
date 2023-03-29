@@ -1,20 +1,21 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" style="background-color: black; z-index: 1;">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
-      <%= image_tag "logos/logo-pink-black-care.png", style: "width: 300px; height: 100px;" %>
+      <%= image_tag "logos/logos/logo-care-trans.png", style: "width: 300px; height: 100px;" %>
     <% end %>
+<link rel="stylesheet" type="text/scss" href="assets/stylesheets/components/_navbar.scss"> <!-- needs to be manually connected to the navbar.scss because of the new file name -->
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon banner-navbar" style="background-color: rgba(0, 0, 0, 0); z-index: 1;">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+  <%= image_tag "logos/logo-pink-black-care.png", style: "width: 300px; height: 100px;" %>
+<% end %>
 
-    <div class="search-bar" style="transform: translateX(200px); display: flex; align-items: center;">
-      <div class="col-12 col-sm-6 col-md-6 search-form-container">
-        <%= render "shared/search_form" %>
-      </div>
-    </div>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="z-index: 999;">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
@@ -23,26 +24,37 @@
           <li class="nav-item">
             <%= link_to "Messages", "/chatrooms/1", class: "nav-link", style: "color: white;" %>
           </li>
+          <li class="nav-item">
+            <%# <p class="dropdown-item nav-link" style="color: white;"><%= current_user.first_name %></p>
           </li>
-          <li class="nav-item dropdown" >
-            <a class="nav-link" href="#" data-bs-toggle="dropdown"><%= current_user.first_name %></a>
-            <%# <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <li class="nav-item dropdown">
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My bookings", bookings_path, class: "dropdown-item", style: "color: black;" %>
               <%= link_to "My items", my_items_items_path, class: "dropdown-item", style: "color: black;" %>
-              <%= link_to "My favourite items", my_favorite_items_items_path, class: "dropdown-item", style: "color: black;" %>
+              <%= link_to "My favorite items", my_favorite_items_items_path, class: "dropdown-item", style: "color: black;" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item", style: "color: black;" %>
             </div>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path,  class: "nav-link" %>
-          </li>
+          <div class="home-links">
+            <li>
+              <%= link_to "How it works", how_it_works_path, class: "nav-link", style: "color: white;" %>
+            </li>
+            <li>
+              <%= link_to "About us", about_us_path, class: "nav-link", style: "color: white;" %>
+            </li>
+          </div>
+            <li class="nav-item">
+              <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+            </li>
         <% end %>
       </ul>
     </div>
   </div>
 </div>
+  </div>
+
 <style>
   .dropdown-menu {
     background-color: #F5F5F5;
