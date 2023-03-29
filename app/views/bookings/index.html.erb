@@ -5,23 +5,23 @@
       <% bookings_by_status = @bookings.select { |booking| booking.status == status } %>
       <% if bookings_by_status.present? %>
         <% count = bookings_by_status.size %>
-        <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}")) %>
+        <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}", class: "status-title")) %>
 
         <div class="container-bookings-items">
           <ul>
             <% bookings_by_status.each do |booking| %>
               <li class="booking-item">
                 <div class="booking-details">
-                  <h5><%= booking.item.name %></h5>
+                  <h4><%= booking.item.name %></h4>
                   <p class="description"><%= booking.item.description %></p>
-                  <p class="rental-dates">Rental Dates: <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
-                  <p class="rental-price">Rental Price: <%= booking.total_price %> euros</p>
-                  <p class="booking-status">Booking Status: <%= booking.status %></p>
+                  <p class="rental-dates"><strong>Rental Dates:</strong> <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                  <p class="rental-price"><strong>Rental Price:</strong> <%= booking.total_price %> euros</p>
+                  <p class="booking-status"><strong>Booking Status:</strong> <%= booking.status %></p>
                 </div>
                 <div class="booking-actions">
-                  <%= link_to "Edit", edit_booking_path(booking), class: "btn btn-warning btn-sm" %>
-                  <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
-                  <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-light btn-sm" %>
+                  <%= link_to "Update", edit_booking_path(booking), class: "btn btn-danger btn btn-sm" %>
+                  <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-danger btn-sm" %>
+                  <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-outline-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
                 </div>
               </li>
             <% end %>
@@ -42,6 +42,12 @@
 
 
 <style>
+
+.status-title{
+  color: #e6e6e6;
+  text-transform: uppercase;
+  letter-spacing: -3px;
+}
   .container-bookings {
     /* display: flex;
     flex-direction: column;
@@ -58,11 +64,12 @@
   }
 
   .booking-item {
+    border-radius: 10px;
     display: flex;
     align-items: center;
     padding: 20px;
     margin: 10px;
-    background-color: #f5f5f5;
+    background-color: #ffa3a3;
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
   }
 
