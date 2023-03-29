@@ -1,12 +1,10 @@
-<link rel="stylesheet" href="/assets/stylesheets/signinup">
-<script src="/javascript/controllers/signinupform.js"></script>
-<div class="signup-form-container", style="display: flex; justify-content: center; flex-direction: column;">
-  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form' }, data: { turbo: :false }) do |f| %>
+<div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: column;">
+  <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form', multipart: true }, data: { turbo: :false }) do |f| %>
 
     <%= f.error_notification %>
 
     <div class="form-inputs">
-      <div class="firstlastname", style="display: flex; flex-direction: row;">
+      <div class="firstlastname" style="display: flex; flex-direction: row;">
         <div class="field required">
           <%= f.label :first_name %>
           <%= f.text_field :first_name, autofocus: true, autocomplete: "First name", class: 'text-input', required: true %>
@@ -20,18 +18,23 @@
         <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'text-input', required: true %>
       </div>
-     <div class="field required">
+      <div class="field required">
         <%= f.label :password %>
         <%= f.password_field :password, autocomplete: "new-password", class: 'text-input', required: true %>
       </div>
 
-        <div class="field required">
+      <div class="field required">
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'text-input', required: true %>
       </div>
 
+      <div class="field required">
+        <%= f.label :avatar %>
+        <%= f.file_field :avatar, class: 'text-input' %>
+      </div>
+
       <div class="form-actions" style="display: flex; flex-direction: column; justify-content: center;">
-          <%= f.button :submit, "Sign up", class: "button", style: "margin-bottom: 20px; width: 30%;" %>
+        <%= f.button :submit, "Sign up", class: "button", style: "margin-bottom: 20px; width: 30%;" %>
         <button class="button", style="width: 30%;">
           <%= render "devise/shared/links"%>
         <style>
