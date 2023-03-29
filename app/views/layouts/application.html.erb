@@ -26,14 +26,9 @@
     <% end %>
     <!--- <%= render "shared/navbar" %> -->
     <%= render "shared/flashes" %>
-    <div class="container">
+    <div class="main">
       <%= yield %>
     </div>
-    <% unless (controller_name == 'sessions' && (action_name == 'new' || action_name == 'create')) || (controller_name == 'registrations' && (action_name == 'new' || action_name == 'create' || action_name == 'edit')) || (controller_name == 'items' && action_name == 'new') %>
-      <footer>
-        <%= render "shared/footer" %>
-      </footer>
-    <% end %>
   </body>
 </html>
 
