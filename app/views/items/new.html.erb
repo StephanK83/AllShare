@@ -27,15 +27,17 @@
             <%= f.input :postal_code, input_html: {class: "text-input", style: "background-color: black;"} %>
           </div>
           <div class="field required">
-            <%= f.input :quantity, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :quantity, input_html: { id: "item_quantity", class: "text-input", style: "background-color: black;" } %>
           </div>
 
           <div class="field required">
-            <%= f.input :min_days_rent, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :min_days_rent, input_html: { id: "item_min_days_rent", class: "text-input", style: "background-color: black;" } %>
           </div>
+
           <div class="field required">
-            <%= f.input :price, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :price, input_html: { id: "item_price", class: "text-input", style: "background-color: black;" } %>
           </div>
+
           <div class="form-actions" style="display: flex; flex-direction: column; justify-content: center;">
             <button class="button" style="border-radius: 20px; width: 180px; height: 50px; display: flex; justify-content: center; align-items: center; margin: 20px; margin-left:45%;">
               <%= f.button :submit, "Upload", class: "button" %>
@@ -159,15 +161,15 @@
     $("#preview-postal-code").text($(this).val());
   });
 
-  $("#item_quantity").keyup(function () {
+  $("#item_quantity").on('input', function () {
     $("#preview-quantity").text($(this).val());
   });
 
-  $("#item_min_days_rent").keyup(function () {
+  $("#item_min_days_rent").on('input', function () {
     $("#preview-min-days-rent").text($(this).val());
   });
 
-  $("#item_price").keyup(function () {
+  $("#item_price").on('input', function () {
     $("#preview-price").text($(this).val());
   });
 </script>
