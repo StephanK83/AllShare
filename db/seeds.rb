@@ -12,8 +12,10 @@ require "httparty"
 require "faker"
 
 Message.destroy_all
+Review.destroy_all
 Item.destroy_all
 User.destroy_all
+
 
 response = HTTParty.get('https://jsonplaceholder.typicode.com/users')
 users = JSON.parse(response.body)
