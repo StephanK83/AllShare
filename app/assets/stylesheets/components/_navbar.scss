@@ -17,16 +17,20 @@
 }
 
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
-  // background-color: rgba(0, 0, 0, 1); /* Set the background color to transparent */
   color: white;
   padding: 10px;
   display: flex;
   justify-content: space-between;
-  // z-index: 1; /* Set the z-index to a higher value than the container */
+}
+
+.navbar-home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .home-links {

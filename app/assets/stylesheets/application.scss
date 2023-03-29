@@ -14,3 +14,13 @@
 @import "components/signinup";
 @import "components/search_form";
 @import "pages/button";
+@import "pages/my_items";
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+}
