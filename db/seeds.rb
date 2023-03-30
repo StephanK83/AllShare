@@ -76,19 +76,19 @@ item = Item.new(
 item.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
 item.save!
 
-file = URI.open("https://images.unsplash.com/photo-1551264950-49fb963d1493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")
-item = Item.new(
-    category: "Film & Photography",
-    name: "SONY, ILCE-7M2",
-    description: "Vintage sony camera, great photos",
-    price: Faker::Commerce.price,
-    user_id: User.all.pluck(:id).sample,
-    quantity: Faker::Number.between(from: 1, to: 10),
-    min_days_rent: Faker::Number.between(from: 1, to: 7),
-    postal_code: Faker::Address.zip_code
-  )
-item.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
-item.save!
+# file = URI.open("https://images.unsplash.com/photo-1551264950-49fb963d1493?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80")
+# item = Item.new(
+#     category: "Film & Photography",
+#     name: "SONY, ILCE-7M2",
+#     description: "Vintage sony camera, great photos",
+#     price: Faker::Commerce.price,
+#     user_id: User.all.pluck(:id).sample,
+#     quantity: Faker::Number.between(from: 1, to: 10),
+#     min_days_rent: Faker::Number.between(from: 1, to: 7),
+#     postal_code: Faker::Address.zip_code
+#   )
+# item.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+# item.save!
 
   file = URI.open("https://images.unsplash.com/photo-1528395874238-34ebe249b3f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80")
   item = Item.new(

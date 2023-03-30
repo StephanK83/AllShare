@@ -1,10 +1,4 @@
 <div class="box">
-  <!--<div class="filters-index">
-    <p>Filter</p>
-      <button type="button" class="shiny-btn">
-        <a href="<%= new_item_path %>" class="list-item-link" style="color: black; text-decoration: none; margin: 10px 10px;">List item</a>
-      </button>
-  </div>-->
   <div class="content-index">
     <div class="col-left">
       <% @items.each do |item| %>
@@ -20,7 +14,7 @@
               <div class="card-index-body-down">
                 <div class="card-index-details">
                   <div class="item-index-price" style="width: 100%">
-                    <p style="font-size: 20px; margin-bottom: 0; color: #00264C;"><%= "€" + item.price.round.to_s %>/day</p>
+                    <p style="font-size: 20px;  color: #00264C;"><%= "€" + item.price.round.to_s %>/day</p>
                     <p style="font-size: 12px; margin-bottom: 0; color: gray;">*Plan ahead: <%= item.min_days_rent %> minimum rental period</p>
                   </div>
                 </div>
@@ -60,7 +54,7 @@
         id='map'
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
         data-map-markers-value="<%= @markers.to_json %>"
-        style='width: 100%; height: 93vh; position: sticky; top: 70px; z-index: 0;'>
+        style='width: 100%; height: 93vh; position: sticky; top: 0; z-index: 0;'>
       </div>
     </div>
   </div>

@@ -3,13 +3,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/javascript/controllers/signinupform.js"></script>
 </head>
-<body style="background-image: url(<%= asset_path 'wallpapers/wallpaper5.jpg' %>); background-position: center center; background-repeat: no-repeat; background-size: cover; opacity: 0.5;"> </body>
-  <div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 80%; background-color: lightgrey; padding: 50px; height: 100vh; min-height: 100vh;">
+<div style="background-image: url(<%= asset_path 'wallpapers/wallpaper5.jpg' %>); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+  <div class="signup-form-container" style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 80%; background-color: lightgrey; padding: 50px; height: 90vh; min-height: 100vh; background: transparent; margin-left: 50px;">
     <div class="new-item-container" style="display: flex; justify-content: center; flex-direction: row; align-items: center; width: 80%;">
       <div class="form-inputs" style="display: flex; justify-content: center; align-items: center; width: 75%; max-width: 550px;">
         <%= simple_form_for(@item) do |f| %>
           <div class="field required">
-            <%= f.input :photos, as: :file, input_html: { multiple: true }, input_html: {class: "text-input file-input"} %>
+            <%= f.input :photos, as: :file, input_html: { multiple: true, class: "text-input file-input" } %>
           </div>
 
           <div class="field required">
@@ -18,24 +18,24 @@
               input_html: {class: "text-input", style: "background-color: black;"} %>
           </div>
           <div class="field required">
-            <%= f.input :name, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :name, input_html: {class: "text-input", style: "background-color: black; color: white;"} %>
           </div>
           <div class="field required">
-            <%= f.input :description, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :description, input_html: {class: "text-input", style: "background-color: black; color: white;"} %>
           </div>
           <div class="field required">
-            <%= f.input :postal_code, input_html: {class: "text-input", style: "background-color: black;"} %>
+            <%= f.input :postal_code, input_html: {class: "text-input", style: "background-color: black; color: white;"} %>
           </div>
           <div class="field required">
-            <%= f.input :quantity, input_html: { id: "item_quantity", class: "text-input", style: "background-color: black;" } %>
-          </div>
-
-          <div class="field required">
-            <%= f.input :min_days_rent, input_html: { id: "item_min_days_rent", class: "text-input", style: "background-color: black;" } %>
+            <%= f.input :quantity, input_html: { id: "item_quantity", class: "text-input", style: "background-color: black; color: white;" } %>
           </div>
 
           <div class="field required">
-            <%= f.input :price, input_html: { id: "item_price", class: "text-input", style: "background-color: black;" } %>
+            <%= f.input :min_days_rent, input_html: { id: "item_min_days_rent", class: "text-input", style: "background-color: black; color: white;" } %>
+          </div>
+
+          <div class="field required">
+            <%= f.input :price, input_html: { id: "item_price", class: "text-input", style: "background-color: black; color: white;" } %>
           </div>
 
           <div class="form-actions" style="display: flex; flex-direction: column; justify-content: center;">
@@ -68,7 +68,7 @@
     </div>
   </div>
 
-</body>
+</div>
 <style>
 
 .button {
