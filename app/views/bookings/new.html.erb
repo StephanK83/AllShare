@@ -10,7 +10,7 @@
     <div class="form-fields" style="display: flex; flex-direction: column; align-self: flex-end;">
       <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
       <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
-      <%= f.submit 'Book' %>
+      <%= f.submit 'Book', { input_html: { class: "book" } } %>
     </div>
   <% end %>
 </div>
@@ -41,7 +41,7 @@
     color: white;
   }
 
-  input[type="submit"] {
+  .book {
     border-radius: 20px;
     border: none;
     background-color: #ff7070;
