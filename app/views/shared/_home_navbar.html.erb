@@ -13,10 +13,13 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "How it works", how_it_works_path, class: "nav-link", style: "color: white;" %>
+            <%= link_to "How it works", how_it_works_path, class: "nav-link", style: "color: white; margin-right: 10px;" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "About us", about_us_path, class: "nav-link", style: "color: white; margin-right: 10px;" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Messages", "/chatrooms/1", class: "nav-link", style: "color: white;" %>
+            <%= link_to "Messages", "/chatrooms/1", class: "nav-link", style: "color: white; margin-right: 10px;" %>
           </li>
           <li class="nav-item">
             <%# <p class="dropdown-item nav-link" style="color: white;"><%= current_user.first_name %></p>

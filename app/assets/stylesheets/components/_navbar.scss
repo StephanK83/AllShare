@@ -19,21 +19,25 @@
 .navbar {
   width: 100%;
   color: white;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
 
 .navbar-home {
   position: fixed;
-  top: 0;
+  top: 13px;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
+.navbar-home .nav-link {
+  padding: 10px;
+}
+
 .home-links {
   display: flex;
+  padding: 10px;
   justify-content: space-between;
 }
