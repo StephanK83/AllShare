@@ -1,58 +1,94 @@
+<div class="main-container">
+  <div class="container-bookings row">
+    <div class="col-6 text-left">
+      <% %w[pending accepted declined cancelled].each do |status| %>
+        <% bookings_by_status = @bookings.select { |booking| booking.status == status } %>
+        <% if bookings_by_status.present? %>
+          <% count = bookings_by_status.size %>
+          <% concat(content_tag(:h2, "#{status}: #{count} #{count == 1 ? 'booking' : 'bookings'}", class: "status-title")) %>
 
-<div class="container-bookings row">
-  <div class="col-6 text-left">
-    <% %w[pending accepted declined cancelled].each do |status| %>
-      <% bookings_by_status = @bookings.select { |booking| booking.status == status } %>
-      <% if bookings_by_status.present? %>
-        <% count = bookings_by_status.size %>
-        <% concat(content_tag(:h2, "#{status.capitalize}: You have #{count} #{count == 1 ? 'booking' : 'bookings'}", class: "status-title")) %>
-
-        <div class="container-bookings-items">
-          <ul>
+          <div class="container-bookings-items">
             <% bookings_by_status.each do |booking| %>
-              <li class="booking-item">
-                <div class="booking-details">
-                  <h4><%= booking.item.name %></h4>
-                  <p class="description"><%= booking.item.description %></p>
-                  <p class="rental-dates"><strong>Rental Dates:</strong> <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
-                  <p class="rental-price"><strong>Rental Price:</strong> <%= booking.total_price %> euros</p>
-                  <p class="booking-status"><strong>Booking Status:</strong> <%= booking.status %></p>
+              <div class="booking-item">
+                <div class="booking-item-top">
+                  <%= booking.item.name %>
                 </div>
-                <div class="booking-actions">
-                  <%= link_to "Update", edit_booking_path(booking), class: "btn btn-danger btn btn-sm" %>
-                  <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-danger btn-sm" %>
-                  <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-outline-danger btn-sm", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
+                <div class="booking-item-bottom">
+                  <div>
+                    <p class="description"><%= booking.item.description %></p>
+                    <p class="rental-dates"><strong>Rental Dates:</strong> <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %></p>
+                    <p class="rental-price"><strong>Rental Price:</strong> <%= booking.total_price %> euros</p>
+                    <p class="booking-status"><strong>Booking Status:</strong> <%= booking.status %></p>
+                  </div>
+                  <div class="booking-actions">
+                    <%= link_to "Update", edit_booking_path(booking), class: "btn btn-danger btn btn-m", style: "border-radius: 20px; background-color: #ff3d3d" %>
+                    <%= link_to "Review", new_item_booking_review_path(booking.item_id, booking), class: "btn btn-danger btn-m", style: "border-radius: 20px; background-color: #ff3d3d" %>
+                    <%= link_to "Cancel", booking_cancel_path(booking), class: "btn btn-outline-danger btn-m", style: "border-radius: 20px;", data: {turbo_confirm: "Are you sure you want to cancel the booking?"} %>
+                  </div>
                 </div>
-              </li>
+              </div>
             <% end %>
-          </ul>
-        </div>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-  <div class="col-6">
-    <div data-controller="map"
-        id='map'
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-map-markers-value="<%= @markers.to_json %>"
-        style='width: 100%; height: 93vh; position: sticky; top: 70px; z-index: 0;'>
-      </div>
+    </div>
+    <div class="col-6">
+      <div data-controller="map"
+          id='map'
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+          data-map-markers-value="<%= @markers.to_json %>"
+          style='width: 100%; height: 93vh; position: sticky; top: 70px; z-index: 0; border-radius: 10px;'>
+        </div>
+    </div>
   </div>
 </div>
 
 
 <style>
 
+.booking-item-top{
+  background-color: #ccc;
+  color: black;
+  padding: 20px;
+  font-size: 25px;
+}
+
+.booking-item-bottom{
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 20px;
+  color: white;
+}
+
+.booking-name{
+  height: 50px;
+  background-color: black;
+  padding-top: 10px;
+}
+
+h4{
+  background-color: #ff3d3d;
+  margin-top: 3px;
+}
+
+.main-container{
+  padding: 1px;
+  background-color:#e6e6e6;
+}
+
+.btn-outline-danger:hover{
+  background-color: #ff3d3d;
+
+}
+
 .status-title{
-  color: #e6e6e6;
-  text-transform: uppercase;
+  color: #111111;
+  text-transform: capitalize;
   letter-spacing: -3px;
+
 }
   .container-bookings {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -60,17 +96,15 @@
   }
 
   .container-bookings-items {
-    margin-top: 25px;
+    margin-top: 0px;
   }
 
   .booking-item {
     border-radius: 10px;
-    display: flex;
     align-items: center;
-    padding: 20px;
-    margin: 10px;
-    background-color: #ffa3a3;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin: 15px;
+    background-color: #ffffff;
   }
 
   .booking-item img {
@@ -81,6 +115,7 @@
   }
 
   .booking-details {
+    margin: 0px;
     flex: 1;
   }
 
