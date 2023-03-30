@@ -37,9 +37,9 @@
                         class: "favorite-item-link",
                         data: {turbo_method: :post} do %>
               <% if current_user.favorited?(item) %>
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-heart" style="color: red;"></i>
               <% else %>
-                <i class="far fa-heart" aria-hidden="false"></i>
+                <i class="far fa-heart" aria-hidden="false" style="color: red;"></i>
               <% end %>
             <% end %>
           <% end %>
