@@ -1,52 +1,55 @@
-<h2>My favorite items</h2>
-<p>Tap the heart to unlike</p>
-<div>
-  <button>
-    <%= link_to "See all items", items_path %>
-  </button>
-</div>
-<div class="row">
-  <% @my_favorite_items.each do |favorite| %>
-    <div class="col-sm-3">
-      <div class="card">
-        <%= link_to item_path(favorite.favoritable) do %>
-          <% if favorite.favoritable.picture %>
-            <%= image_tag favorite.favoritable.picture, class: "item-card-img" %>
-          <% else %>
-            <% favorite.favoritable.photos.each do |photo| %>
-              <%= cl_image_tag photo.key, class: "item-card-img" %>
-            <% end %>
-          <% end %>
-          <%= link_to toggle_favorite_item_path(favorite.favoritable),
-                      class: "favorite-item-link",
-                      data: {turbo_method: :post},
-                      remote: true do %>
-            <% if current_user.favorited?(favorite.favoritable) %>
-              <i class="fas fa-heart"></i>
-            <% else %>
-              <i class="far fa-heart" aria-hidden="false"></i>
-            <% end %>
-          <% end %>
-        <% end %>
-        <div class="card-body">
-          <h5 class="card-title"><%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %></h5>
-          <p class="card-text"><%= favorite.favoritable.category %></p>
-        </div>
+
+
+<% if @my_favorite_items.empty? %>
+  <h2>My favorite items</h2>
+  <p>Tap the heart to unlike</p>
+<% else %>
+  <div class="myfavitems-main">
+    <div class="myfavitems-main-left">
+      <p style="font-size: 36px; font-weight: bold;">My favorite items</p>
+      <p style="font-size: 24px;">You have <%= @my_favorite_items.count %> favorite items</p>
+      <div class="left-wall">
+        <%= image_tag("wallpapers/pages/myitems_fav.png", alt: "My fav items", size: "300x300") %>
       </div>
     </div>
-  <% end %>
-</div>
-
-<style>
-  .card {
-    position: relative;
-  }
-
-  .favorite-item-link {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1;
-    color: red;
-  }
-</style>
+    <div class="myfavitems-main-right">
+      <% @my_favorite_items.each do |favorite| %>
+        <div class="myfavitems-card">
+          <div class="myfavitems-tumb">
+            <%= link_to item_path(favorite.favoritable) do %>
+              <% if favorite.favoritable.picture %>
+                <%= image_tag favorite.favoritable.picture %>
+              <% else %>
+                <% favorite.favoritable.photos.each do |photo| %>
+                  <%= cl_image_tag photo.key %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="myfavitems-details">
+            <span class="myfavitems-category"><%= favorite.favoritable.category %></span>
+            <h4><a href=""><%= link_to favorite.favoritable.name, item_path(favorite.favoritable) %></a></h4>
+            <p><%= favorite.favoritable.description %></p>
+            <div class="myfavitems-bottom-details">
+              <div class="myfavitems-price"><%= "€" + favorite.favoritable.price.round.to_s %>/day</div>
+            </div>
+            <div class="myfavitems-links">
+              <%= link_to item_path(favorite.favoritable) do %>
+                <%= link_to toggle_favorite_item_path(favorite.favoritable),
+                          class: "favorite-item-link",
+                          data: {turbo_method: :post},
+                          remote: true do %>
+                  <% if current_user.favorited?(favorite.favoritable) %>
+                    <i class="fas fa-heart"></i>
+                  <% else %>
+                    <i class="far fa-heart" aria-hidden="false"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
