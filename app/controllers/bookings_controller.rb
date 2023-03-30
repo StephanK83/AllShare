@@ -6,6 +6,16 @@ class BookingsController < ApplicationController
     %w[pending accepted declined cancelled].each do |status|
       instance_variable_set("@#{status}_bookings_count", policy_scope(Booking).send(status).count)
     end
+    booking_ids = @bookings.pluck(:item_id)
+    @items = []
+    booking_ids.each { |id| @items << Item.find(id) }
+    @markers = @items.map do |item|
+      {
+        lat: item.latitude,
+        lng: item.longitude
+        #info_window: render_to_string(partial: "popup", locals: {item: item})
+      }
+    end
   end
 
   # the Booking Show page is not necessary
