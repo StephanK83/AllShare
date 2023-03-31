@@ -1,3 +1,4 @@
+
 <body style="background-color: #ec7d83; background-image: url(<%= asset_path 'wallpapers/bookingbackground2.png' %>); background-position: center center; background-repeat: no-repeat; background-size: cover; opacity: 0.8; display: flex; align-items: center;"> </body>
 <div class="new-booking-container" style="display: flex; flex-direction: column; align-items: center; margin: 150px auto; background-color: lightgrey; width: 50%; padding: 20px;">
   <h2>Booking <%= @item.name %></h2>
@@ -11,8 +12,11 @@
       <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
       <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
       <%= f.submit 'Book', { input_html: { class: "book" } } %>
+
     </div>
-  <% end %>
+   
+    <% end %>
+  </div>
 </div>
 
 
@@ -40,6 +44,7 @@
     background-color: black;
     color: white;
   }
+
 
   .book {
     border-radius: 20px;

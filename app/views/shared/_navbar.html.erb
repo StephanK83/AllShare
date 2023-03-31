@@ -4,6 +4,13 @@
       <%= image_tag "logos/logo-pink-trans-care2.png", style: "width: 300px; height: 100px;" %>
     <% end %>
 
+    <div class="d-flex justify-content-between search-form">
+      <%= render "shared/search_form" %>
+      <button type="button" class="shiny-btn">
+        <a href="<%= new_item_path %>" class="list-item-link" style="color: black; text-decoration: none;">List item</a>
+      </button>
+    </div>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
