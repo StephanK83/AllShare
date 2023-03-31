@@ -4,7 +4,7 @@
       <% @items.each do |item| %>
         <div class="card-index">
           <%= link_to item_path(item) do %>
-            <%= cl_image_tag item.photos.first.key, class: "cl-img" %>
+            <%= cl_image_tag item.photos.first.key, style: "object-fit: cover; position: absolute; top: 0; left: 0;"%>
             <div class="card-index-body">
               <div class="card-index-body-up">
                 <h2 class="card-index-title" style="margin-bottom: 0;"><%= item.name %></h2>
