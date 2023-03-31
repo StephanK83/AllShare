@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-  include Kaminari::Helpers::UrlHelper
 
   def index
     if params[:query].present?
