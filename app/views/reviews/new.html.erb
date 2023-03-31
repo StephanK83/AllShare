@@ -1,6 +1,10 @@
 <div class="form-container">
+  <h2>Booking <%= @item.name %></h2>
+  <p><%= @item.description %></p>
+  <div class="item-photo" style="margin: 20px;">
+    <%= cl_image_tag @item.photos.first.key, class: "cl-img" %>
+  </div>
   <%= form_for([@item, @booking, @review]) do |f| %>
-
     <div class="star-rating-container">
       <h3>Rate your experience</h3>
       <div class="star-rating" data-rating="0">
@@ -12,15 +16,26 @@
     </div>
     <div class="comment-container">
       <h3>Write your comment</h3>
-      <%= f.text_area :comment %>
+      <%= f.text_area :comment, class: "comment" %>
     </div>
-    <div class="submit-container">
-      <%= f.submit "Submit" %>
+    <div>
+    <%= f.submit "Submit", class: "submit" %>
     </div>
+
 </div>
   <% end %>
-
 <style>
+  .submit {
+    border-radius: 20px;
+    margin: 20px;
+    width: 120px;
+    margin-left: 50px;
+  }
+  .comment {
+    border-radius: 20px;
+    background-color: black;
+  }
+
   h3 {
     font-size: 1.5rem;
     margin-bottom: 10px;
@@ -29,15 +44,15 @@
     margin: 10px;
   }
   .form-container {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 250px;
   }
   .star-rating {
     display: flex;
