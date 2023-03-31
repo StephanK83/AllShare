@@ -1,5 +1,5 @@
-<div class="page-container" style="display: flex; justify-content: center; align-items: center; background-color: black;">
-  <div class="items-show-container" style="display: flex; flex-direction: column; align-items: center; background-color: lightgrey; margin: 50px; padding: 20px; width: 30%; border-radius: 20px">
+<div class="row">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-body">
         <% if @item.picture %>
@@ -11,8 +11,10 @@
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="col-md-6">
     <div class="card">
-      <div class="card-body" style="overflow: auto;">
+      <div class="card-body">
         <h1><%= @item.name %></h1>
         <ul class="list-group list-group-flush">
           <li class="list-group-item"><strong>Category:</strong> <%= @item.category %></li>
@@ -22,47 +24,53 @@
           <li class="list-group-item"><strong>Minimum rental days:</strong> <%= @item.min_days_rent %></li>
           <li class="list-group-item"><strong>Price:</strong> <%= @item.price %> euros per day</li>
         </ul>
+
+        <div class="item-actions mt-3">
+          <% unless policy(@item).owner? %>
+            <button type="button" class="btn btn-success">
+              <%= link_to "Book", new_item_booking_path(@item) %>
+            </button>
+          <% end %>
+
+          <% if policy(@item).edit? %>
+            <button type="button" class="btn btn-warning">
+              <%= link_to "Edit", edit_item_path %>
+            </button>
+          <% end %>
+
+          <% if policy(@item).destroy? %>
+            <button type="button" class="btn btn-danger">
+              <%= link_to "Delete",
+                item_path,
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+              %>
+            </button>
+          <% end %>
+        </div>
       </div>
-    </div>
-    <div class="item-actions">
-      <div class="see-all" style="display: flex; flex-direction: column;">
-        <button class="button" style="border-radius: 20px; width: 180px; height: 50px; background-color: #ec7d83; margin: 10px;">
-          <%= link_to "Show all", items_path %>
-        </button>
-        <% unless policy(@item).owner? %>
-        <button class="button" style="border-radius: 20px; width: 180px; height: 50px; background-color: #ec7d83; margin: 10px; text-color: white;">
-            <%= link_to "Book", new_item_booking_path(@item) %>
-        </button>
-        <% end %>
-      </div>
-    </div>
-    <div class="reviews">
-      <h2>Reviews</h2>
-      <% if @reviews.present? %>
-        <%= render @reviews %>
-      <% else %>
-        <p>No reviews yet.</p>
-      <% end %>
     </div>
   </div>
-  <% if @item.postal_code %>
-    <div class="col-right">
-      <div data-controller="map"
-        id='map'
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-map-markers-value="<%= @markers.to_json %>"
-        style='height: 93vh; position: sticky; top: 70px; z-index: 0; border-radius: 20px;'>
-      </div>
-    </div>
+</div>
+
+<hr>
+
+<div class="reviews">
+  <h2>Reviews</h2>
+  <% if @reviews.present? %>
+    <%= render @reviews %>
+  <% else %>
+    <p>No reviews yet.</p>
   <% end %>
 </div>
 
-<style>
+<hr>
+<div class="see-all">
+  <button>
+    <%= link_to "See all items", items_path %>
+  </button>
+</div>
 
-  a {
-        text-decoration: none;
-        color: black;
-      }
+<style>
 
   .star-rating {
     display: inline-flex;
@@ -93,5 +101,4 @@
   .star-rating .half-star.selected ~ .full-star {
     color: #FFD700;
   }
-
 </style>
