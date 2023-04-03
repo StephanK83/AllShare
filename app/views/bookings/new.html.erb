@@ -1,6 +1,6 @@
 
 <div style="background-color: #ec7d83; background-image: url(<%= asset_path 'wallpapers/bookingbackground2.png' %>); background-position: center center; background-repeat: no-repeat; background-size: cover; opacity: 0.8; display: flex; align-items: center;">
-  <div class="new-booking-container" style="display: flex; flex-direction: column; align-items: center; margin: 150px auto; background-color: lightgrey; width: 50%; padding: 20px;">
+  <div class="new-booking-container" style="display: flex; flex-direction: column; align-items: center; margin: 150px auto; background-color: lightgrey; width: 50%; padding: 20px; background-color: rgba(211, 211, 211, 0.8); border-radius: 20px;">
     <h2>Booking <%= @item.name %></h2>
     <p><%= @item.description %></p>
     <div class="item-photo" style="margin: 20px;">
@@ -11,7 +11,7 @@
       <div class="form-fields" style="display: flex; flex-direction: column; align-self: flex-end;">
         <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
         <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime" }, id: 'end_time' } %>
-        <%= f.submit 'Book', {input_html: { class: "submit-book" }}%>
+        <%= f.submit 'Book', class: "submit-book" %>
       </div>
     <% end %>
   </div>
@@ -20,6 +20,7 @@
 
 
 <style>
+
   .new-booking-container {
   width: 40%;
   }
@@ -43,7 +44,7 @@
     color: white;
   }
 
-  input[type="submit-book"] {
+  .submit-book {
     border-radius: 20px;
     border: none;
     background-color: #ff7070;
